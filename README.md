@@ -1,3 +1,3 @@
-## KEEP JAvA CODE
+## KEEP JAVA CODE
 ## 仅保存java代码的仓库
 
