@@ -6,7 +6,7 @@ class Practice {
     public static String getType(Object test) {
         return test.getClass().getName().toString();
     }
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         int time1 = 7*24*60*60*1000;
         long time2 = 30*24*60*60*1000L;
 
