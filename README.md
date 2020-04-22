@@ -11,4 +11,5 @@
   - [Practice4.java](https://github.com/lioil9/projects/blob/master/work_4_21/Practice4.java) `硬币兑换方案，去除数组重复元素`
 - work_4_22
   - [ObjectDemo.java](https://github.com/lioil9/projects/blob/master/work_4_22/ObjectDemo.java) `简单掌握类的声明和使用，大象和冰箱存储`
-  - 
+  - [Company.java](https://github.com/lioil9/projects/blob/master/work_4_22/Company.java) `定义公司类用数组存储公司员工`
+  - [Fraction.java](https://github.com/lioil9/projects/blob/master/work_4_22/Fraction.java) `将分数打印、相乘、相加以及化简`

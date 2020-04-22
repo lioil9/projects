@@ -53,10 +53,9 @@ class Fridge{
      * 将大象从冰箱中移除
      * @return
      */
-    Elephant remove(){
+    void remove(){
         storeElephant = null;
         System.out.println("大象从冰箱里面取出来了");
-        return storeElephant;
     }
 }
 
