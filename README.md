@@ -13,3 +13,5 @@
   - [ObjectDemo.java](https://github.com/lioil9/projects/blob/master/work_4_22/ObjectDemo.java) `简单掌握类的声明和使用，大象和冰箱存储`
   - [Company.java](https://github.com/lioil9/projects/blob/master/work_4_22/Company.java) `定义公司类用数组存储公司员工`
   - [Fraction.java](https://github.com/lioil9/projects/blob/master/work_4_22/Fraction.java) `将分数打印、相乘、相加以及化简`
+  - [packagetest](https://github.com/lioil9/projects/blob/master/work_4_22/packagetest) `简单将类拆分然后编译到不同包下`
+  - [packagetest2](https://github.com/lioil9/projects/blob/master/work_4_22/packagetest2) `将ObjectDemo中的类拆分编译输出到不同包下`

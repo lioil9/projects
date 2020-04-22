@@ -89,10 +89,7 @@ class Main {
      * @param baseWage
      * @return
      */
-    static Employee creatEmployee(String name, int workTime, int baseWage) {
-        Employee employee = new Employee(name, workTime, baseWage);
-        return employee;
-    }
+
 
     /**
      * 打印当前公司员工的名字
@@ -110,10 +107,10 @@ class Main {
         //创建名为销售公司的公司对象
         Company salesCompany = new Company();
         //创建员工对象
-        Employee e1 = creatEmployee("张三", 205, 3000);
-        Employee e2 = creatEmployee("李四", 220, 3000);
-        Employee e3 = creatEmployee("王五", 180, 3000);
-        Employee e4 = creatEmployee("mac", 196, 3000);
+        Employee e1 = new Employee("张三", 205, 3000);
+        Employee e2 = new Employee("李四", 220, 3000);
+        Employee e3 = new Employee("王五", 180, 3000);
+        Employee e4 = new Employee("mac", 196, 3000);
         //将员工添加到公司的员工数组中
         salesCompany.addEmployee(e1);
         salesCompany.addEmployee(e2);
