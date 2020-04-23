@@ -20,16 +20,24 @@ class Company {
      * @param name
      */
     void deleteEmployee(String name) {
+        boolean flag = true;
         if(len == 0){
             System.out.println("公司当前无员工，不可删除");
+            return;
         }
         for (int i = 0; i < len; i++) {
             if (employeeArrays[i].name.equals(name)) {
+                flag = false;
                 employeeArrays[i] = employeeArrays[len-1];
                 employeeArrays[len-1] = null;
+                len--;
             }
         }
-        len--;
+        if(flag){
+            System.out.println("无此员工，无法删除");
+            return;
+        }
+        
     }
 
     /**
@@ -82,14 +90,6 @@ class Employee {
 }
 
 class Main {
-    /**
-     * 创建一个employee对象，并且输入给其属性
-     * @param name
-     * @param workTime
-     * @param baseWage
-     * @return
-     */
-
 
     /**
      * 打印当前公司员工的名字
@@ -125,9 +125,9 @@ class Main {
         System.out.println(e4.name+"的综合工资："+e4.wage());
         System.out.println("公司需要支付的工资总数为："+salesCompany.sumWage());
 
-        salesCompany.deleteEmployee("mac");
+        salesCompany.deleteEmployee("nac");
         printName(salesCompany);
-        System.out.println("删除mac员工后公司需要支付的总工资："+salesCompany.sumWage());
+        System.out.println("删除员工后公司需要支付的总工资："+salesCompany.sumWage());
         
     }
         
