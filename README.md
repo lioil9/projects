@@ -10,9 +10,9 @@
   - [Practice3.java](https://github.com/lioil9/projects/blob/master/work_4_21/Practice3.java) `不使用*相乘，分钟转年和天数`
   - [Practice4.java](https://github.com/lioil9/projects/blob/master/work_4_21/Practice4.java) `硬币兑换方案，去除数组重复元素`
 - work_4_22
-  - [ObjectDemo.java](https://github.com/lioil9/projects/blob/master/work_4_22/objectdemo) `简单掌握类的声明和使用，大象和冰箱存储`
-  - [Company.java](https://github.com/lioil9/projects/blob/master/work_4_22/companytest) `定义公司类用数组存储公司员工`
-  - [Fraction.java](https://github.com/lioil9/projects/blob/master/work_4_22/fractiontest) `将分数打印、相乘、相加以及化简`
+  - [objectdemo](https://github.com/lioil9/projects/blob/master/work_4_22/objectdemo) `简单掌握类的声明和使用，大象和冰箱存储`
+  - [companytest](https://github.com/lioil9/projects/blob/master/work_4_22/companytest) `定义公司类用数组存储公司员工`
+  - [fractiontest](https://github.com/lioil9/projects/blob/master/work_4_22/fractiontest) `将分数打印、相乘、相加以及化简`
   - [packagetest](https://github.com/lioil9/projects/blob/master/work_4_22/packagetest) `简单将类拆分然后编译到不同包下`
   - [packagetest2](https://github.com/lioil9/projects/blob/master/work_4_22/packagetest2) `将ObjectDemo中的类拆分编译输出到不同包下`
 - work_4_23
