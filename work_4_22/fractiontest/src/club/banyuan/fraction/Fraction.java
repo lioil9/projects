@@ -1,6 +1,8 @@
-class Fraction{
-    int num;
-    int den;
+package club.banyuan.fraction;
+
+public class Fraction{
+    public int num;
+    public int den;
     
     /**
      * 构造方法，赋予属性
@@ -15,7 +17,7 @@ class Fraction{
      * 在取余数保存为double，然后再除以分子得到小数部分
      * @return
      */
-    double toDouble(){
+    public double toDouble(){
         double a = num / den;
         double b = num%den;
         double c = b/den;
@@ -27,7 +29,7 @@ class Fraction{
      * 然后两分母相乘得到分母
      * 分子分母互相乘的和得到分子
      */
-    Fraction plus(Fraction r){
+    public Fraction plus(Fraction r){
         int n = this.num;
         int d = this.den;
         this.num = (n*r.den)+(d*r.num);
@@ -41,7 +43,7 @@ class Fraction{
      * @param r
      * @return
      */
-    Fraction multiply(Fraction r){
+    public Fraction multiply(Fraction r){
         int n = this.num;
         int d = this.den;
         this.num = n*r.num;
@@ -55,7 +57,7 @@ class Fraction{
      * 当然后找到分子分母的最大公因数，没有时返回为1
      * 然后除以找到的因数除以返回
      */
-    void print(){
+    public void print(){
         if(num%den == 0){
             System.out.println(num/den);
         }else{
@@ -70,19 +72,4 @@ class Fraction{
         
     }
 
-}
-
-class Main{
-    public static void main(String[] args) {
-        Fraction f = new Fraction(4,2);
-        Fraction r = new Fraction(1,3);
-        f.print();
-        r.print();
-        System.out.println(r.toDouble());
-        f.plus(r);
-        f.print();
-        f.multiply(r);
-        f.print();
-        
-    }
 }
