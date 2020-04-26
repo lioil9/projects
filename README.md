@@ -19,7 +19,7 @@
   - [src](https://github.com/lioil9/projects/blob/master/work_4_22/packagetest2) `添加适当的访问修饰符和包路径并导入类`
 - work_4_24
   - [练习题](https://github.com/lioil9/projects/blob/master/work_4_24) `练习选择题`
-  - [practice1](https://github.com/lioil9/projects/blob/master/work_4_24/Practice1.java) `练习题`
+  - [practice1](https://github.com/lioil9/projects/blob/master/work_4_24/practice1) `练习题`
   - [practice2](https://github.com/lioil9/projects/blob/master/work_4_24/practice2) `掌握构造方法的使用`
   - [practice3](https://github.com/lioil9/projects/blob/master/work_4_24/practice3) `练习`
     1. Random `任意范围的随机数`
