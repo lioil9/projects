@@ -18,14 +18,36 @@ class Game{
         }
         return computerArray;
     }
-    /*
+
     public int[] guessing(Player player, int num){
         int[] guessArray = new int[num];
+        int[] count = {0,0,0};
+
         guessArray[0] = player.guess();
-        for(int i=1; i<num-1; i++){
+        for(int i=1; i<num; i++){
+            guessArray[i] = Game.computerArray[i-1].guess;
+        }
+        //判断数组中剪刀石头布分布
+        for(int i=0; i<num; i++){
+            switch(guessArray[i]){
+                case 1:
+                    count[0]++;
+                    break;
+                case 2:
+                    count[1]++;
+                    break;
+                case 3:
+                    coutn[2]++;
+                    break;
+            }
+        }
+        for(int i=0; i<count.length; i++){
+            if(count[i] == 0){
+                
+            }
         }
     }
-    */
+
     
     public static void main(String[] args) {
         Computer computer1 = new Computer();
