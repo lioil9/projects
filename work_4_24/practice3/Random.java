@@ -2,7 +2,7 @@
 public class Random {
 
     int randomInt(int from, int to){
-        int r = (int)(Math.random()*(from-to)) + to;
+        int r = (int)(Math.random()*(from-to-1)) + to;
         return r;
     }
     public static void main(String[] args) {

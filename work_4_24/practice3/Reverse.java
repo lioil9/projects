@@ -13,7 +13,7 @@ class Reverse{
         return reverse(right) + reverse(left);
     }
     public static void main(String[] args) {
-        String str = ("T32o be or not to be");
+        String str = ("To be or not to be");
         System.out.println(str);
         String[] strArray = str.split(" ");
         for(String s : strArray){
