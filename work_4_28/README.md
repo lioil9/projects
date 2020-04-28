@@ -1,4 +1,9 @@
 ## 练习
+javac -cp src:dist/main.jar src/club/banyuan/animal/Dog.java -d out
+java -cp dist/main.jar:lib/Dog.jar club.banyuan.Main
+jar uf dist/main.jar out/club/banyuan/animal/Dog.class 
+java -cp dist/main.jar club.banyuan.Main
+
 1. 
 ```java
 class Base {
