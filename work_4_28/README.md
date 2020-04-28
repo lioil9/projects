@@ -261,6 +261,9 @@ class Y extends X {
 
 12. 
 ```java
+/**
+ * 首先构造父类X的对象，初始化m 1111，运行代码块语句，m=m++; 后m的值为1111，打印
+ */
 class X {
     int m = 1111;
     {
@@ -268,7 +271,7 @@ class X {
         System.out.println(m);
     }
 }
- 
+//构造Y类对象 ，调用methodOfY()方法，返回值2220，打印
 class Y extends X {
     {
         System.out.println(methodOfY());
@@ -278,7 +281,7 @@ class Y extends X {
         return m-- + --m;
     }
 }
-//
+//新建Y类对象y
 public class MainClass {
     public static void main(String[] args) {
         Y y = new Y();
@@ -288,3 +291,140 @@ public class MainClass {
 > 输出结果：
 >1111
 >2220
+
+13. 
+```java
+class A {
+	void A()
+	{
+		System.out.println(1);
+	}
+}
+
+class B extends A {
+	void B()
+	{
+		A();
+	}
+}
+//新建B类对象，也新建了一个A类父类对象，并且B类对象继承A类方法，调用B类对象方法，里面再调用基础来的A父类方法，输出1
+public class MainClass {
+	public static void main(String[] args)
+	{
+		new B().B();
+	}
+}
+```
+> 输出结果: 1
+
+14.
+```java
+class A
+{
+	int i = 1212;
+}
+
+class B extends A
+{
+	A a;
+
+	public B(A a)
+	{
+		this.a = a;
+	}
+}
+
+public class MainClass
+{
+	public static void main(String[] args)
+	{
+        //先创建了一个A类对象a，i值为1212
+		A a = new A();
+        //又创建了一个B类对象，继承A类对象初始化i值1212，将a传入构造方法构造对象，此时b对象有一个a对象成员属性
+		B b = new B(a);
+
+		System.out.println(a.i);
+
+		System.out.println(b.i);
+
+		System.out.println(b.a.i);
+        //将对象a的值进行改变，此时b对象的i值因为从父类继承是属于b对象的，没有改变
+		b.a.i = 2121;
+
+		System.out.println("--------");
+
+		System.out.println(a.i);
+
+		System.out.println(b.i);
+	}
+}
+```
+> 输出结果：
+> 1212 
+> 1212 
+> 1212 
+> --------
+> 2121 
+> 1212
+
+15.
+```java
+class A
+{
+    //入参2000 ； i除以10后为200
+	int methodOfA(int i)
+	{
+		i /= 10;
+
+		return i;
+	}
+}
+
+class B extends A
+{
+    //调用methodB方法入参 100； i=2000 ,返回调用父类方法
+	int methodOfB(int i)
+	{
+		i *= 20;
+
+		return methodOfA(i);
+	}
+}
+
+public class MainClass
+{
+	public static void main(String[] args)
+	{
+        //新建B类对象b
+		B b = new B();
+        //调用对象b的methodB方法入参100，返回值200 打印
+		System.out.println(b.methodOfB(100));
+	}
+}
+```
+> 输出结果：200
+
+16.
+```java
+class One {
+	int x = 2121;
+}
+
+class Two extends One{
+	int x = 1212;
+	
+	{
+		System.out.println(x);
+	}
+}
+/**声明创建Two类对象two,这里先是构造父类One对象其x值为2121，
+*然后构造Two对象其x值为1212，最后打印输出的是当前类的对象也就是Two对象的值为1212
+*/
+public class MainClass {
+	public static void main(String[] args)
+	{
+		Two two = new Two();
+	}
+}
+```
+> 输出结果：1212
