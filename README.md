@@ -25,7 +25,7 @@
     1. Random `任意范围的随机数`
     2. StringBuffer `接收返回字符串，实现字符串反转`
     3. Reverse `将字母反转`
-    4. GuessGame
-    5. GuessNum
+    4. GuessGame 
+    5. GuessNum `猜四位数数字`
     6. DrawLots
     7. fingerguess 
