@@ -39,7 +39,7 @@ class Main {
         System.out.println(e4.name+"的综合工资："+e4.wage());
         System.out.println("公司需要支付的工资总数为："+salesCompany.sumWage());
 
-        salesCompany.deleteEmployee("nac");
+        salesCompany.deleteEmployee("mac");
         printName(salesCompany);
         System.out.println("删除员工后公司需要支付的总工资："+salesCompany.sumWage());
         

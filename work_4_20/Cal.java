@@ -1,6 +1,8 @@
 // TODO 增加一个取余运算的功能
 // TODO 增加对被除数是否为0的检查，如果是0，提示输入不合法，重新显示主菜单
 
+import java.util.Scanner;
+
 class Cal {
 
     /*

@@ -3,7 +3,7 @@ class GuessGame{
     static int ROOT_MENU_LEN = ROOT_MENU.length;
 
     enum FlowStatus{
-        ROOt, QUIT
+        ROOT, QUIT
     }
     
     static void displayRootMenu(){
@@ -11,7 +11,6 @@ class GuessGame{
             System.out.print(ROOT_MENU[i]);
         }
     }
-
 
     public static void main(String[] args) {
 
