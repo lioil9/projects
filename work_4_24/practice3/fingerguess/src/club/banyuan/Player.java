@@ -1,3 +1,5 @@
+package club.banyuan;
+
 public class Player {
  
     String name;
