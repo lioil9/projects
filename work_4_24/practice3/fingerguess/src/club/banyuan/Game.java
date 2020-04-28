@@ -1,7 +1,6 @@
 package club.banyuan;
 
 import java.util.Scanner;
-import club.banyuan.Player;
 
 class Game {
     static Player[] playerList;

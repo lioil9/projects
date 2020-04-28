@@ -1,7 +1,5 @@
 package club.banyuan;
 
-import club.banyuan.Person;
-
 class Main{
     public static void main(String[] args) {
     Person person = new Person();
