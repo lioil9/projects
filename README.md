@@ -28,4 +28,7 @@
     4. GuessGame 
     5. GuessNum `猜四位数数字`
     6. DrawLots
-    7. fingerguess 
+    7. fingerguess
+- work_4_28 
+  - [README.md](https://github.com/lioil9/projects/blob/master/work_4_28/) `练习题目`
+  - [practice1](https://github.com/lioil9/projects/blob/master/work_4_28/practice1) `jar包的使用和打包`

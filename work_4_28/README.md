@@ -278,7 +278,7 @@ class X {
         System.out.println(m);
     }
 }
-//构造Y类对象 ，调用methodOfY()方法，返回值2220，打印
+//构造Y类对象 ，调用methodOfY()方法，此时m的值为1111，先计算--m，得到m值1110，然后m--先与后面的加再计算，返回值2220，打印
 class Y extends X {
     {
         System.out.println(methodOfY());
