@@ -26,7 +26,7 @@ class Game {
      */
     public static String getPlayersInput() {
         String judge = "";
-        for (int i = 0; i < playerList.length; i++) {
+        for (int i = 0; i < len; i++) {
             p = playerList[i];
             if (p.name.contains("电脑")) {
                 p.punch = (int)(Math.random() * 3) + 1;
@@ -75,9 +75,9 @@ class Game {
         Player p1;
         Player p2;
         for (int i = 0; i < len; i++) {
+            int count = 0;
             p1 = playerList[i];
             System.out.println(p1.name + "出 " + choices[p1.punch- 1]);
-            int count = 0;
             if (judge.length() == 2) {
                 for (int j = 0; j < len; j++) {
                     p2 = playerList[j];

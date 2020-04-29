@@ -1,8 +1,10 @@
 package club.banyuan;
 
-public class Player {
+import java.util.Arrays;
+
+public final class Player {
  
-    String name;
+    public String name;
     int punch;
     String status="";
     String[] choices = {"剪刀", "石头", "布"};
@@ -10,6 +12,5 @@ public class Player {
     public Player(String name) {
         this.name = name;
     }
- 
    
 }
