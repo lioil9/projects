@@ -21,30 +21,24 @@ public class Main {
         for(int i=0; i<menuList.size(); i++){
             System.out.println(i+1+menuList.get(i).getName());
         }
-        showMenu(menuList);
-
-
+        showMenu(menuList,menuTree);
 
 
     }
-    public static void showMenu(List<Menu> menuList){
-            Scanner sc = new Scanner(System.in);
-            int s = sc.nextInt() - 1;
-            if(s == -1){
-                showParentMenu(menuList, s);
-            }else{
-                for (int i=0; i<menuList.get(s).getChildren().size(); i++){
-                    System.out.println(i+1+menuList.get(s).getChildren().get(i).getName());
-                }
+    public static void showMenu(List<Menu> menuList, MenuTree menuTree){
+        Scanner sc = new Scanner(System.in);
+        int s = sc.nextInt() - 1;
+        if (s == -1) {
+            for (int i = 0; i < menuTree.getParentNode(menuList.get(s)).size(); i++) {
+                System.out.println(i + 1 + menuTree.getParentNode(menuList.get(s)).get(i).getName());
             }
-            showMenu(menuList);
-    }
-
-    public static void showParentMenu(List<Menu> menuList, int s){
-        for(Menu menuNode : menuList){
-            if(menuNode.getParentId().equals(menuList.get(s+1).getParentId())) {
-                System.out.println(menuNode.getName());
+        } else {
+            for (int i = 0; i < menuList.get(s).getChildren().size(); i++) {
+                System.out.println(i + 1 + menuList.get(s).getChildren().get(i).getName());
             }
         }
+        showMenu(menuList, menuTree);
     }
+
+
 }
