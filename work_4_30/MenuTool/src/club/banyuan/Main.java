@@ -1,7 +1,6 @@
 package club.banyuan;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String []args) {
@@ -18,23 +17,10 @@ public class Main {
         //创建树
         MenuTree menuTree =new MenuTree(menuList);
         menuList=menuTree.buildTree();
-        for(int i=0; i<menuList.size(); i++){
-            System.out.println(i+1+menuList.get(i).getName());
-        }
-        Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt() - 1;
-        Menu menu = menuList.get(s);
-        while(true) {
-            showMenu(menu);
-            s = sc.nextInt() - 1;
-            menu = menu.getChildren().get(s);
-        }
 
-    }
-    public static void showMenu(Menu menuList){
-                for (int i = 0; i < menuList.getChildren().size(); i++) {
-                    System.out.println(i + 1 + menuList.getChildren().get(i).getName());
-                }
+        ShowMenu.showRootMenu(menuList);
+        ShowMenu.showMenu(menuList);
+
     }
 
 

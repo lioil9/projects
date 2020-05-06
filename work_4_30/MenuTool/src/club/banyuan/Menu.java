@@ -48,7 +48,7 @@ public class Menu {
 
     public void showChildMenu(){
         for(int i=0; i<children.size(); i++){
-            System.out.println(children.get(i).getName());
+            System.out.println(i+1+"."+children.get(i).getName());
         }
     }
 }
