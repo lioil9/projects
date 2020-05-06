@@ -68,6 +68,7 @@ public class Player {
     boolean flag = false;
     if (ROLE_HUMAN.equals(role)) {
       while(true) {
+        // 设置只能输入1-3的数字，且输入0返回true
         try {
           System.out.println("请出拳 1.石头  2.剪刀  3.布:");
           Scanner scanner = new Scanner(System.in);

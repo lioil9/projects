@@ -33,3 +33,10 @@
 - work_4_28 
   - [README.md](https://github.com/lioil9/projects/blob/master/work_4_28/) `练习题目`
   - [practice1](https://github.com/lioil9/projects/blob/master/work_4_28/practice1) `jar包的使用和打包`
+- work_4_29
+	- [README.md](https://github.com/lioil9/projects/blob/master/work_4_29/) `继承练习题目`
+	- [practice1](https://github.com/lioil9/projects/blob/master/work_4_29/practice1) `继承练习`
+- work_4_30
+- work_5_6
+	- [practice1](https://github.com/lioil9/projects/blob/master/work_5_6/practice1) `多态练习`
+	- 

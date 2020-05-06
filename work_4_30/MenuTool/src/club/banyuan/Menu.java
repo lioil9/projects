@@ -6,12 +6,14 @@ public class Menu {
     private String id;
     private String parentId;
     private String name;
+    private int level;
     private List<Menu> children;
 
-    public Menu(String id, String parentId, String name) {
+    public Menu(String id, String parentId, String name, int level) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
+        this.level = level;
     }
 
     public String getId() {
@@ -46,9 +48,17 @@ public class Menu {
         this.children = children;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public void showChildMenu(){
         for(int i=0; i<children.size(); i++){
             System.out.println(children.get(i).getName());
         }
-        }
+    }
 }

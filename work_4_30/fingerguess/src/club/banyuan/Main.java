@@ -13,6 +13,7 @@ public class Main {
     while (true) {
       int playerCount = 0;
       while (true) {
+        // 用try catch只能输入数字，再设置只能输入2-5数字，为0时退出
         try {
           System.out.println("用户输入多少人参与猜拳（2~5人）\n输入0结束。");
           Scanner scanner = new Scanner(System.in);
@@ -28,12 +29,14 @@ public class Main {
           System.out.println("输入数据有误,请重新输入..");
         }
       }
+      //设置剩余人数
       Rules.setPlayersLeft(playerCount);
       boolean flag1 = false;
       Player[] players = Player.initPlayers(playerCount);
 
       while (true) {
         boolean flag = Rules.showFingers(players);
+        //输入为0时跳出循环
         if(flag) {
           flag1 = true;
           break;
