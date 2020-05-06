@@ -10,24 +10,24 @@ public class MenuTree {
     }
 
     //建立树形结构
-    public List<Menu> builTree(){
-        List<Menu> treeMenus =new  ArrayList<Menu>();
+    public List<Menu> buildTree(){
+        List<Menu> treeMenus = new  ArrayList<Menu>();
         for(Menu menuNode : getRootNode()) {
-            menuNode=buildChilTree(menuNode);
+            menuNode = buildChildTree(menuNode);
             treeMenus.add(menuNode);
         }
         return treeMenus;
     }
 
     //递归，建立子树形结构
-    private Menu buildChilTree(Menu pNode){
-        List<Menu> chilMenus =new  ArrayList<Menu>();
+    private Menu buildChildTree(Menu pNode){
+        List<Menu> childMenus = new  ArrayList<Menu>();
         for(Menu menuNode : menuList) {
             if(menuNode.getParentId().equals(pNode.getId())) {
-                chilMenus.add(buildChilTree(menuNode));
+                childMenus.add(buildChildTree(menuNode));
             }
         }
-        pNode.setChildren(chilMenus);
+        pNode.setChildren(childMenus);
         return pNode;
     }
 
