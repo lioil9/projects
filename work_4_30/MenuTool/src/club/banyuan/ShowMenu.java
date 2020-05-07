@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShowMenu {
+    private static final int RETURN = -1;
+    private static  final String ROOT_ID = "0";
+
     public static void showMenu(List<Menu> menuList){
         Scanner sc = new Scanner(System.in);
+
         while (true) {
             int s = sc.nextInt() - 1;
-            if(s == -1){
+            if(s == RETURN){
                 System.out.println("当前已经是根目录，无法返回");
                 showRootMenu(menuList);
                 continue;
@@ -17,8 +21,8 @@ public class ShowMenu {
             while (true) {
                 menu.showChildMenu();
                 s = sc.nextInt() - 1;
-                if (s == -1) {
-                    if (menu.getParentId().equals("0")) {
+                if (s == RETURN) {
+                    if (menu.getParentId().equals(ROOT_ID)) {
                         showRootMenu(menuList);
                         break;
                     }

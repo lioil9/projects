@@ -5,6 +5,7 @@ import java.util.List;
 
 public class MenuTree {
     private List<Menu> menuList = new ArrayList<Menu>();
+
     public MenuTree(List<Menu> menuList) {
         this.menuList=menuList;
     }
@@ -40,17 +41,6 @@ public class MenuTree {
             }
         }
         return rootMenuLists;
-    }
-
-    //获取父节点
-    public List<Menu> getParentNode(Menu pNode){
-        List<Menu> parentMenuLists =new  ArrayList<Menu>();
-        for(Menu menuNode : menuList) {
-            if(menuNode.getId().equals(pNode.getParentId())) {
-                parentMenuLists.add(menuNode);
-            }
-        }
-        return parentMenuLists;
     }
 
 }

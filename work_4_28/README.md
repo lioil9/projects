@@ -44,7 +44,7 @@ class B extends A {
 }
 /**
 * 这里的a是父类对象A的引用，而指向的是子类对象B；
-* 而因为子类与父类中有同名成员变量，对象的属性不具有多态，则在声明父*类A时i值就已经确定
+* 而因为子类与父类中有同名成员变量，对象的属性不具有多态，则在声明父类A时i值就已经确定
 */
 public class MainClass {
     public static void main(String[] args) {

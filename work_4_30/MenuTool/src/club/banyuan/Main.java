@@ -1,8 +1,11 @@
 package club.banyuan;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
+    private static final String MAIN_PAGE = "1.编辑菜单\n2.查看菜单\n0.退出程序";
+
     public static void main(String []args) {
         List<Menu>  menuList= new ArrayList<Menu>();
         //插入数据
@@ -20,6 +23,12 @@ public class Main {
 
         ShowMenu.showRootMenu(menuList);
         ShowMenu.showMenu(menuList);
+    }
+
+    public static void mainInterface(){
+        System.out.println(MAIN_PAGE);
+        Scanner sc = new Scanner(System.in);
+
 
     }
 
