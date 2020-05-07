@@ -25,6 +25,10 @@ public class OrderCake extends Cake{
         return "OderCake"+super.toString()+ "\t"+ weightInKG;
     }
 
+    /**
+     * 重写calPrice方法，计算OrderCake蛋糕价格的方法
+     * @return
+     */
     @Override
     public double calcPrice() {
         return price * weightInKG;

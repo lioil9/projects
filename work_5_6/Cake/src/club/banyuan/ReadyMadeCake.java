@@ -25,6 +25,10 @@ public class ReadyMadeCake extends Cake{
         return "ReadyMadeCake" + super.toString() + "\t"+ quantity;
     }
 
+    /**
+     * 重写calcPrice方法，计算ReadyMadeCake蛋糕的价格
+     * @return
+     */
     @Override
     public double calcPrice() {
         return price * quantity;
