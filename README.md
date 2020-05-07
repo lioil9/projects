@@ -38,6 +38,6 @@
 	- [practice1](https://github.com/lioil9/projects/blob/master/work_4_29/practice1) `继承练习`
 - work_4_30
 - work_5_6
-  - [README](https://github.com/lioil9/projects/blob/master/work_5_6/) `多态输出结果练习题`
-	- [Shape](https://github.com/lioil9/projects/blob/master/work_5_6/Shape) `多态练习,计算不同形状图形面积`
-	- [Cake](https://github.com/lioil9/projects/blob/master/work_5_6/Cake) `多态、抽象类练习,计算同个父类不同子类蛋糕的总价数量`
+	- [README](https://github.com/lioil9/projects/blob/master/work_5_6/) `多态输出结果练习题`  
+	- [Shape](https://github.com/lioil9/projects/blob/master/work_5_6/Shape) `多态练习,计算不同形状图形面积`  
+	- [Cake](https://github.com/lioil9/projects/blob/master/work_5_6/Cake) `多态、抽象类练习,计算同个父类不同子类蛋糕的总价数量`  

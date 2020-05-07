@@ -1,5 +1,7 @@
 package club.banyuan.area;
 
+import club.banyuan.area.AreaCalculator;
+
 public class Main {
 
   public static void main(String[] args) {

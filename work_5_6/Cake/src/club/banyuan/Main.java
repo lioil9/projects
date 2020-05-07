@@ -20,7 +20,7 @@ public class Main {
          * 再随机生成蛋糕重量和数量
          */
         int r = (int)(Math.random()*OBJ_TOTAL);
-        for(int i=0; i<10; i++){
+        for(int i=0; i<OBJ_TOTAL; i++){
             if(r-i > 0) {
                 int rWeight = (int)(Math.random()*WEIGHT_RANGE+1);
                 cakes.add(new OrderCake(i, OC_PRICE, rWeight));
