@@ -33,14 +33,28 @@ public class LinkedList implements List {
 
   @Override
   public Object remove(int index) {
-
-    return null;
+    if(isLegal(index))
+      return null;
+    Node cur = searchNode(index);
+    removeNode(cur);
+    size--;
+    return cur.getData();
   }
 
   @Override
   public boolean remove(Object o) {
+    Node cur = head;
+    for(int i=0; i<size; i++){
+      cur = cur.getNext();
+      if(cur.getData().equals(o)){
+        removeNode(cur);
+        size--;
+        return true;
+      }
+    }
     return false;
   }
+
 
   @Override
   public boolean add(Object o) {
@@ -56,9 +70,9 @@ public class LinkedList implements List {
   @Override
   public boolean isEmpty() {
     if(size == 0)
-      return false;
-    else
       return true;
+    else
+      return false;
   }
 
   @Override
@@ -67,7 +81,7 @@ public class LinkedList implements List {
   }
 
   //判断下标是否合法
-  public boolean isLegal(int index){
+  private boolean isLegal(int index){
     if (index >= size) {
       System.out.println("下标不合法");
       return true;
@@ -75,8 +89,9 @@ public class LinkedList implements List {
       return false;
     }
   }
+
   //通过下标查找到结点
-  public Node searchNode(int index){
+  private Node searchNode(int index){
     int count = index;
     Node cur = head;
     while (count != -1) {
@@ -85,4 +100,19 @@ public class LinkedList implements List {
     }
     return cur;
   }
+
+  //删除找到的结点
+  private void removeNode(Node node) {
+    if(node == tail){
+      tail = node.getPrev();
+      node.getPrev().setNext(null);
+      node.setPrev(null);
+    } else {
+      node.getNext().setPrev(node.getPrev());
+      node.getPrev().setNext(node.getNext());
+      node.setPrev(null);
+      node.setNext(null);
+    }
+  }
+
 }
