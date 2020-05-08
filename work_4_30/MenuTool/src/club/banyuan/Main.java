@@ -21,6 +21,7 @@ public class Main {
         MenuTree menuTree =new MenuTree(menuList);
         menuList=menuTree.buildTree();
 
+        //System.out.println(TOP_PAGE);
         ShowMenu.showRootMenu(menuList);
         ShowMenu.showMenu(menuList);
     }

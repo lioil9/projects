@@ -37,7 +37,6 @@ public class Menu {
     public void setName(String name) {
         this.name = name;
     }
-
     public List<Menu> getChildren() {
         return children;
     }

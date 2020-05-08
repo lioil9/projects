@@ -40,4 +40,7 @@
 - work_5_6
 	- [README](https://github.com/lioil9/projects/blob/master/work_5_6/) `多态输出结果练习题`  
 	- [Shape](https://github.com/lioil9/projects/blob/master/work_5_6/Shape) `多态练习,计算不同形状图形面积`  
-	- [Cake](https://github.com/lioil9/projects/blob/master/work_5_6/Cake) `多态、抽象类练习,计算同个父类不同子类蛋糕的总价数量`  
+	- [Cake](https://github.com/lioil9/projects/blob/master/work_5_6/Cake) `多态、抽象类练习,计算同个父类不同子类蛋糕的总价数量`
+- work_5_7  
+	- [README](https://github.com/lioil9/projects/blob/master/work_5_6/) `接口练习题`
+	- [Firm](https://github.com/lioil9/projects/blob/master/work_5_7/Firm/) `多态实现添加公司职员类`  
