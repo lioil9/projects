@@ -2,7 +2,7 @@ package club.banyuan;
 
 public class LinkedList implements List {
 
-  private Node head = new Node();
+  private final Node head = new Node();
   private Node tail = head;
   private int size;
 
@@ -46,7 +46,7 @@ public class LinkedList implements List {
     Node cur = head;
     for(int i=0; i<size; i++){
       cur = cur.getNext();
-      if(cur.getData().equals(o)){
+      if(cur.getData() == null || cur.getData().equals(o)){
         removeNode(cur);
         size--;
         return true;
@@ -79,7 +79,7 @@ public class LinkedList implements List {
 
   //判断下标是否合法
   private boolean isLegal(int index){
-    if (index >= size) {
+    if (index >= size || index < 0) {
       System.out.println("下标不合法");
       return true;
     } else {

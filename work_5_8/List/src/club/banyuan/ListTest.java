@@ -5,18 +5,21 @@ public class ListTest {
   public static void main(String[] args) {
     List list = new LinkedList();
     list.add(12);
+    list.add(null);
     list.add(15);
     printList(list);
 
      System.out.println(list.size() == 2);
-     System.out.println((Integer) list.get(1) == 12);
+     System.out.println(list.get(1) == Integer.valueOf(12));
+     System.out.println(list.remove(null));
+     printList(list);
      System.out.println(list.remove(Integer.valueOf(12)));
      System.out.println((Integer) list.remove(0) == 15);
      System.out.println(list.isEmpty());
      list.add(22);
      list.add(33);
      list.add(44);
-      printList(list);
+     printList(list);
      System.out.println(list.size() == 3);
      System.out.println((Integer) list.set(2, 55) == 44);
      list.clear();
@@ -24,11 +27,15 @@ public class ListTest {
 
       List list1 = new ArrayList();
       list1.add(12);
+      list1.add(null);
       list1.add(15);
+      list1.add(null);
       printList(list1);
 
       System.out.println(list1.size() == 2);
-      System.out.println((Integer) list1.get(1) == 12);
+      System.out.println(list1.get(1) == Integer.valueOf(12));
+      System.out.println(list1.remove(null));
+      printList(list1);
       System.out.println(list1.remove(Integer.valueOf(12)));
       System.out.println((Integer) list1.remove(0) == 15);
       System.out.println(list1.isEmpty());

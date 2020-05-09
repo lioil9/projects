@@ -6,13 +6,16 @@ import java.util.Scanner;
 public class ShowMenu {
     private static final int RETURN = -1;
     private static  final String ROOT_ID = "0";
-    private static final String TOP_PAGE = "--------当前为查看菜单，输入0返回上一级，输入q返回主菜单---------" ;
+    private static final String TOP_PAGE = "--------当前为查看菜单，输入0返回上一级，输入-1返回主菜单---------" ;
 
     public static void showMenu(List<Menu> menuList){
         Scanner sc = new Scanner(System.in);
-
-        while (true) {
+        boolean flag = true;
+        while (flag) {
             int s = sc.nextInt() - 1;
+            if(s == -2){
+                break;
+            }
             if(s == RETURN){
                 System.out.println("当前已经是根目录，无法返回");
                 showRootMenu(menuList);
@@ -23,6 +26,10 @@ public class ShowMenu {
                 System.out.println(TOP_PAGE);
                 menu.showChildMenu();
                 s = sc.nextInt() - 1;
+                if(s == -2){
+                    flag = false;
+                    break;
+                }
                 if (s == RETURN) {
                     if (menu.getParentId().equals(ROOT_ID)) {
                         showRootMenu(menuList);
