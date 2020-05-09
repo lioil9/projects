@@ -26,7 +26,7 @@ public class LinkedList implements List {
 
   @Override
   public void clear() {
-    this.head = new Node();
+    this.head.setNext(null);
     this.tail = head;
     size = 0;
   }
@@ -69,10 +69,7 @@ public class LinkedList implements List {
 
   @Override
   public boolean isEmpty() {
-    if(size == 0)
-      return true;
-    else
-      return false;
+    return size == 0;
   }
 
   @Override
