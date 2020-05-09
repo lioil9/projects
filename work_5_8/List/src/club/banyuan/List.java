@@ -56,4 +56,5 @@ public interface List {
    * @return 集合中元素个数
    */
   int size();
+
 }

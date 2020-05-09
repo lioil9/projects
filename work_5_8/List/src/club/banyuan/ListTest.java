@@ -41,6 +41,7 @@ public class ListTest {
       list1.clear();
       System.out.println(list1.size() == 0);
 
+
   }
 
   public static void printList(List list) {

@@ -2,7 +2,7 @@ package club.banyuan;
 
 public class ArrayList implements List {
   private static final int DEFAULT_CAPACITY = 20;
-  private int capacity = DEFAULT_CAPACITY;
+  private int capacity;
   private Object[] data ;
   private int size;
 
@@ -11,7 +11,8 @@ public class ArrayList implements List {
       System.out.println("请输入合法的容量构造");
       return;
     }else{
-      this.data = new Object[capacity];
+      this.capacity = capacity;
+      this.data = new Object[this.capacity];
     }
   }
 
