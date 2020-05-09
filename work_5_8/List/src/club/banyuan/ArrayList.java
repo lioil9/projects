@@ -1,5 +1,7 @@
 package club.banyuan;
 
+import java.util.Arrays;
+
 public class ArrayList implements List {
   private static final int DEFAULT_CAPACITY = 20;
   private int capacity;
@@ -9,7 +11,6 @@ public class ArrayList implements List {
   public ArrayList(int capacity){
     if(capacity < 0){
       System.out.println("请输入合法的容量构造");
-      return;
     }else{
       this.capacity = capacity;
       this.data = new Object[this.capacity];
@@ -38,9 +39,7 @@ public class ArrayList implements List {
 
   @Override
   public void clear() {
-    for(int i=0; i<data.length; i++){
-      data[i] = null;
-    }
+    Arrays.fill(data, null);
     size = 0;
   }
 
@@ -61,7 +60,7 @@ public class ArrayList implements List {
   @Override
   public boolean remove(Object o) {
     for(int i=0; i<size; i++){
-      if(data[i].equals(o)){
+      if(data[i] == null || data[i].equals(o)){
         remove(i);
         return true;
       }
@@ -78,10 +77,7 @@ public class ArrayList implements List {
 
   @Override
   public boolean isEmpty() {
-    if(size == 0)
-      return true;
-    else
-      return false;
+    return size == 0;
   }
 
   @Override
@@ -98,6 +94,7 @@ public class ArrayList implements List {
       return false;
     }
   }
+
   //增加容量
   private void addCapacity(){
     if(data.length == size){
