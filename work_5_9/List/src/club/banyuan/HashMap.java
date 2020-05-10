@@ -98,7 +98,7 @@ public class HashMap implements Map {
   @Override
   public Object remove(Object key) {
     if(!containsKey(key)){
-      System.out.println("不包含此元素");
+      System.out.println("不包含此元素,无法删除");
       return null;
     }
 
