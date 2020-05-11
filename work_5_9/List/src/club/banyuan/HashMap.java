@@ -4,7 +4,7 @@ import club.banyuan.collection.ArrayList;
 import club.banyuan.collection.List;
 import club.banyuan.util.Iterator;
 
-public class HashMap implements Map {
+public class HashMap implements Map{
 
   public static final int INIT_LENGTH = 20;
   private List[] listArr = new List[INIT_LENGTH];
@@ -29,26 +29,21 @@ public class HashMap implements Map {
     if(list == null){
       return false;
     }
-
-    Entry entry = getEntry(list, key);
-    if(entry != null){
-      return true;
-    }
-    return false;
+    return getEntry(list, key) != null;
   }
 
   @Override
   public boolean containsValue(Object value) {
     for (List list : listArr) {
-      if (list == null)
+      if (list == null) {
         continue;
+      }
       Iterator iterator = list.iterator();
       while (iterator.hasNext()) {
         Entry entry = (Entry) iterator.next();
-        if(value == null && entry.getValue() == null)
+        if (isNullOrEquals(value, entry)) {
           return true;
-        if (entry.getValue().equals(value))
-          return true;
+        }
       }
     }
     return false;
@@ -101,16 +96,26 @@ public class HashMap implements Map {
       System.out.println("不包含此元素,无法删除");
       return null;
     }
-
     List list = getList(key);
     Entry entry = getEntry(list, key);
-    if(entry != null){
-      Object temp = entry.getValue();
-      list.remove(entry);
-      size--;
-      return temp;
+    if (entry == null) {
+      return null;
     }
-    return null;
+    size--;
+    return getObject(list, entry);
+  }
+
+  private boolean isNullOrEquals(Object value, Entry entry) {
+    if((value == null && entry.getValue() == null)||(entry.getValue().equals(value))) {
+      return true;
+    }
+    return false;
+  }
+
+  private Object getObject(List list, Entry entry) {
+    Object temp = entry.getValue();
+    list.remove(entry);
+    return temp;
   }
 
   //通过key查找list

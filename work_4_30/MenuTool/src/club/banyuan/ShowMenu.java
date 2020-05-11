@@ -30,7 +30,13 @@ public class ShowMenu {
                     flag = false;
                     break;
                 }
-                if (s == RETURN) {
+                if (s != RETURN) {
+                    if (menu.getChildren().get(s).getChildren().size() == 0) {
+                        System.out.println("该菜单中无子菜单,请重新选择");
+                    } else {
+                        menu = menu.getChildren().get(s);
+                    }
+                } else {
                     if (menu.getParentId().equals(ROOT_ID)) {
                         showRootMenu(menuList);
                         break;
@@ -39,12 +45,6 @@ public class ShowMenu {
                         if (menuNode.getId().equals(menu.getParentId()))
                             menu = menuNode;
                     }
-                    continue;
-                }
-                if(menu.getChildren().get(s).getChildren().size() == 0){
-                    System.out.println("该菜单中无子菜单,请重新选择");
-                } else {
-                    menu = menu.getChildren().get(s);
                 }
             }
         }
