@@ -9,7 +9,7 @@ public class DataSetTester {
     countryData.add(new Country(20000));
     countryData.add(new Country(45000));
     countryData.add(new Country(1100));
-    Measurable max = countryData.getMaximum();
+    Measurable max = (Measurable) countryData.getMaximum();
     System.out.println("最高人口数为: " + max.getMeasure());
     Country country = (Country)max;
     System.out.println("最高人口数为: " + country.getMeasure());
