@@ -14,6 +14,5 @@ public class DataSetTester {
     Country country = (Country)max;
     System.out.println("最高人口数为: " + country.getMeasure());
     System.out.println("输出应该为: 45000");
-
   }
 }
