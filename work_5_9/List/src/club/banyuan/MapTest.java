@@ -4,7 +4,6 @@ public class MapTest {
 
   public static void main(String[] args) {
     Map map = new HashMap();
-    String
     map.put("01","abc");
     map.put("02","bcd");
     map.put("03","efg");

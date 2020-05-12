@@ -27,18 +27,22 @@ public class DataSet{
     count++;
   }
 
-  //重载方法，可以调用Country类中实现的getMeasure方法
-  public void add(Country c) {
-    sum = sum + c.getMeasure();
-    Country max = (Country)maximum;
-    if (count == 0 ||  max.getMeasure() < c.getMeasure()) {
-      maximum = c;
+  //重载方法，可以调用实现Measurable接口的类
+  public void add(Measurable m) {
+    sum = sum + m.getMeasure();
+    Measurable max = (Measurable)maximum;
+    if (count == 0 ||  max.getMeasure() < m.getMeasure()) {
+      maximum = m;
     }
     count++;
   }
 
   public double getAverage() {
     // TODO: Check divide by zero. Compute the average value.
+    if(count == 0){
+      System.out.println("对象个数为0，无法计算");
+      return 0;
+    }
     return sum/count;
   }
 
