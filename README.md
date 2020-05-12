@@ -36,11 +36,21 @@
 - work_4_29
 	- [README.md](https://github.com/lioil9/projects/blob/master/work_4_29/) `继承练习题目`
 	- [practice1](https://github.com/lioil9/projects/blob/master/work_4_29/practice1) `继承练习`
-- work_4_30
+- [work_4_30](https://github.com/lioil9/projects/blob/master/work_4_30/)
 - work_5_6
 	- [README](https://github.com/lioil9/projects/blob/master/work_5_6/) `多态输出结果练习题`  
 	- [Shape](https://github.com/lioil9/projects/blob/master/work_5_6/Shape) `多态练习,计算不同形状图形面积`  
 	- [Cake](https://github.com/lioil9/projects/blob/master/work_5_6/Cake) `多态、抽象类练习,计算同个父类不同子类蛋糕的总价数量`
 - work_5_7  
-	- [README](https://github.com/lioil9/projects/blob/master/work_5_6/) `接口练习题`
+	- [README](https://github.com/lioil9/projects/blob/master/work_5_7/) `接口练习题`
 	- [Firm](https://github.com/lioil9/projects/blob/master/work_5_7/Firm/) `多态实现添加公司职员类`  
+- work_5_8  
+	- [List](https://github.com/lioil9/projects/blob/master/work_5_8/List/) `利用接口简单实现ArrayList和LinkedList`  
+- work_5_9  
+	- [List](https://github.com/lioil9/projects/blob/master/work_5_9/List/) `利用接口和迭代器简单实现HashMap`  
+- work_5_11  
+	- [DataSet](https://github.com/lioil9/projects/blob/master/work_5_11/DataSet/) `接口练习,重载实现类方法调用不同的接口类型`
+- work_5_12  
+	- [README](https://github.com/lioil9/projects/blob/master/work_5_12/) `内部类练习题`
+	- [Bird](https://github.com/lioil9/projects/blob/master/work_5_12/practice/Bird/) `匿名内部类练习`
+	- [List](https://github.com/lioil9/projects/blob/master/work_5_12/practice/List/) `内部类练习，将Node类封装到LinkedList类中；（将Entry类封装到HashMap类中，并实现Map中的Entry接口）`
