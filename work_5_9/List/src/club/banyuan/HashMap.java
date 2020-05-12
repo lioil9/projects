@@ -41,6 +41,9 @@ public class HashMap implements Map{
       Iterator iterator = list.iterator();
       while (iterator.hasNext()) {
         Entry entry = (Entry) iterator.next();
+        if(value != null && entry.getValue() == null){
+          continue;
+        }
         if (isNullOrEquals(value, entry)) {
           return true;
         }
@@ -129,7 +132,7 @@ public class HashMap implements Map{
     Iterator iterator = list.iterator();
     while(iterator.hasNext()) {
       Entry entry = (Entry) iterator.next();
-      if(entry.getKey().equals(key)){
+      if(entry.getKey() == key){
         return entry;
       }
     }
