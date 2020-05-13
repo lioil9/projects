@@ -54,3 +54,7 @@
 	- [README](https://github.com/lioil9/projects/blob/master/work_5_12/) `内部类练习题`
 	- [Bird](https://github.com/lioil9/projects/blob/master/work_5_12/practice/Bird/) `匿名内部类练习`
 	- [List](https://github.com/lioil9/projects/blob/master/work_5_12/practice/List/) `内部类练习，将Node类封装到LinkedList类中；（将Entry类封装到HashMap类中，并实现Map中的Entry接口）`
+- work_5_13  
+	- [practice](https://github.com/lioil9/projects/blob/master/work_5_13/practice/) `枚举练习，用普通类实现枚举类`  
+	- [weekday](https://github.com/lioil9/projects/blob/master/work_5_13/weekday/) `枚举类的创建和简单使用`  
+
