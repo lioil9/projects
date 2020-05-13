@@ -27,38 +27,46 @@ public class AnimalType {
 
   // TODO
   public static AnimalType valueOf(int code){
-    switch (code) {
-      case 1:
-        return TIGER;
-      case 2:
-        return LION;
-      case 3:
-        return ELEPHANT;
-      default:
-        return null;
+    if(LION.code == code){
+      return LION;
+    }else if(TIGER.code == code){
+      return TIGER;
+    }else if(ELEPHANT.code == code){
+      return ELEPHANT;
     }
+    return null;
+//    switch (code) {
+//      case 1:
+//        return TIGER;
+//      case 2:
+//        return LION;
+//      case 3:
+//        return ELEPHANT;
+//      default:
+//        return null;
+//    }
   }
 
   // TODO
   public static AnimalType valueOf(String typeName) {
-    switch (typeName){
-      case "老虎":
-        return TIGER;
-      case "狮子":
-        return LION;
-      case "大象":
-        return ELEPHANT;
-      default:
-        return null;
+    if(LION.typeName.equals(typeName)){
+      return LION;
+    }else if(TIGER.typeName.equals(typeName)){
+      return TIGER;
+    }else if(ELEPHANT.typeName.equals(typeName)){
+      return ELEPHANT;
     }
-//    if(LION.getTypeName().equals(typeName)){
-//      return LION;
-//    }else if(TIGER.getTypeName().equals(typeName)){
-//      return TIGER;
-//    }else if(ELEPHANT.getTypeName().equals(typeName)){
-//      return ELEPHANT;
+    return null;
+//    switch (typeName){
+//      case "老虎":
+//        return TIGER;
+//      case "狮子":
+//        return LION;
+//      case "大象":
+//        return ELEPHANT;
+//      default:
+//        return null;
 //    }
-//    return null;
   }
 
   @Override
