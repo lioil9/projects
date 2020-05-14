@@ -53,7 +53,7 @@ public class Calculator {
       case 2:
         // 只有一种情况，用户输入 负数
         // TODO: complete the cases
-        if(tokens[0].equals("-")){
+        if(tokens[0].equals(SUB)){
           try{
             return -Integer.valueOf(tokens[1]);
           }catch (Exception e){
