@@ -21,11 +21,11 @@ public class Main {
         for (Weekday day : Weekday.values()) {
             int temp = day.compareTo(sat);
             if(temp < 0){
-                System.out.println(day+"序号比sat小"+Math.abs(temp)+",比较值为；"+temp);
+                System.out.println(day+"序号比"+sat.name()+"小"+Math.abs(temp)+",比较值为；"+temp);
             }else if(temp > 0){
-                System.out.println(day+"序号比sat大"+temp+",比较值为："+temp);
+                System.out.println(day+"序号比"+sat.name()+"大"+temp+",比较值为："+temp);
             }else {
-                System.out.println(day+"序号和sat相等,比较值为："+temp);
+                System.out.println(day+"序号和"+sat.name()+"相等,比较值为："+temp);
             }
         }
     }

@@ -20,7 +20,7 @@ public enum Weekday {
      * @return 工作日为true，假日为false
      */
     public boolean isWeekDay(){
-        return !(this.equals(SATURDAY) || this.equals(SUNDAY));
+        return !isHoliday();
     }
 
     /**
@@ -28,7 +28,7 @@ public enum Weekday {
      * @return 与判断工作日方法返回值相反
      */
     public boolean isHoliday(){
-        return !(this.isWeekDay());
+        return (this == SATURDAY || this == SUNDAY);
     }
 
     /**
@@ -37,6 +37,6 @@ public enum Weekday {
      */
     @Override
     public String toString() {
-        return this.name;
+        return name;
     }
 }
