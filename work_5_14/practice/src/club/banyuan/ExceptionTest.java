@@ -16,6 +16,6 @@ class Test {
 //        } catch (IOException e) {
 //            System.out.println("IOException called!!!");
 //        }
-        System.out.println(Integer.valueOf("-1234"));
+        System.out.println(Integer.valueOf("-1234r"));
     }
 }

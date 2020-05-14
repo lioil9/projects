@@ -50,11 +50,40 @@ public class Calculator {
       case 2:
         // 只有一种情况，用户输入 负数
         // TODO: complete the cases
-
+        if(tokens[0].equals("-")){
+          try{
+            return -Integer.valueOf(tokens[1]);
+          }catch (Exception e){
+            throw new IllegalInputException("Illegal Argument");
+          }
+        } else {
+          throw new IllegalInputException("Illegal Operator");
+        }
       case 3:
         // 计算表达式
         // TODO: complete the cases
-
+        try{
+          int p1 = Integer.valueOf(tokens[0]);
+          int p2 = Integer.valueOf(tokens[2]);
+          switch (tokens[1]){
+            case "+":
+              return p1 + p2;
+            case "-":
+              return p1 - p2;
+            case "*":
+              return p1 * p2;
+            case "/":
+              if(p2 == 0){
+                throw new DivideByZeroException("Tried to divide by zero");
+              }else {
+                return p1 / p2;
+              }
+            default:
+              throw new IllegalInputException("Illegal Operator");
+          }
+        } catch (NumberFormatException e){
+          throw new IllegalInputException("Illegal Argument");
+        }
       default:
         // 4个或等多操作符号抛出异常
         // TODO: complete the cases
@@ -88,22 +117,27 @@ public class Calculator {
   public static boolean parseAndCompute(String input) {
     // 提取所有运算符号
     String[] tokens = input.split(" ");
+    boolean flag = false;
     try {
       // TODO: complete implementation.
       int result = compute(tokens);
-      System.out.println("The result is" + result);
+      System.out.println("The result is : " + result);
     } catch (QuitException e) {
       // TODO: complete implementation.
+      flag = true;
       System.out.println(e.getMessage());
+      return true;
     } catch (IllegalInputException e) {
       // TODO: complete implementation.
       System.out.println("Illegal input : "+e.getMessage());
     } catch (CalculatorException e) {
       // 这捕获了剩下的CalculatorException情况：DivideByZeroException
       // TODO: complete implementation.
-      System.out.println("Tried to divide by zero");
+      System.out.println(e.getMessage());
     }finally {
-      System.out.println("input was : " + input);
+      if(!flag) {
+        System.out.println("input was : " + input);
+      }
     }
 
     // TODO: complete implementation.
