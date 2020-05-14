@@ -6,7 +6,10 @@ package club.banyuan;
 
 public class Calculator {
   private final static String QUIT = "quit";
-
+  private final static String ADD = "+";
+  private final static String SUB = "-";
+  private final static String MUL = "*";
+  private final static String DIV = "/";
   public Calculator() {
   }
 
@@ -66,13 +69,13 @@ public class Calculator {
           int p1 = Integer.valueOf(tokens[0]);
           int p2 = Integer.valueOf(tokens[2]);
           switch (tokens[1]){
-            case "+":
+            case ADD:
               return p1 + p2;
-            case "-":
+            case SUB:
               return p1 - p2;
-            case "*":
+            case MUL:
               return p1 * p2;
-            case "/":
+            case DIV:
               if(p2 == 0){
                 throw new DivideByZeroException("Tried to divide by zero");
               }else {
