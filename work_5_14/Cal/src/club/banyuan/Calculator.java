@@ -38,7 +38,7 @@ public class Calculator {
             case 1:
                 // 只有一种情况，用户输入 quit
                 // TODO: complete the cases
-                if (QUIT.equals(tokens[0])) {
+                if (QUIT.equalsIgnoreCase(tokens[0])) {
                     throw new QuitException("Quitting\n" + "Thanks!");
                 }
                 throw new IllegalInputException("Illegal Argument");
