@@ -129,7 +129,6 @@ public class Calculator {
       // TODO: complete implementation.
       flag = true;
       System.out.println(e.getMessage());
-      return true;
     } catch (IllegalInputException e) {
       // TODO: complete implementation.
       System.out.println("Illegal input : "+e.getMessage());
@@ -146,6 +145,6 @@ public class Calculator {
     // TODO: complete implementation.
 
     // 未指定退出
-    return false;
+    return flag;
   }
 }
