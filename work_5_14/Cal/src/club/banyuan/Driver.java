@@ -5,10 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * 从用户键盘读取输入。每读一行，尝试将其解释为数学表达式并打印出结果（或错误消息）。
- * 只要用户没有要求退出程序，就继续读取
+ * 从用户键盘读取输入。每读一行，尝试将其解释为数学表达式并打印出结果（或错误消息）。 只要用户没有要求退出程序，就继续读取
  */
-
 public class Driver {
 
     /**
@@ -21,18 +19,15 @@ public class Driver {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         // 循环直到退出
-        while(true)
-        {
+        while (true) {
             // 读下一行输入
             String input = br.readLine();
 
             // 解析，计算并报告结果
-            if(Calculator.parseAndCompute(input)) 
-            {
+            if (Calculator.parseAndCompute(input)) {
                 // 指定程序退出
                 break;
             }
-
         }
 
         // 关闭缓冲的读取器
