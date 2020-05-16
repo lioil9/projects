@@ -1,4 +1,4 @@
-package club.banyuan;
+package club.banyuan.machine;
 
 public enum Coin {
     One(1),Two(2),Five(5),Ten(10);
@@ -11,5 +11,4 @@ public enum Coin {
     public int getPrice() {
         return price;
     }
-
 }
