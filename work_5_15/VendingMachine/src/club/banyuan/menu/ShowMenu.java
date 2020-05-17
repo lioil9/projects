@@ -1,5 +1,6 @@
 package club.banyuan.menu;
 
+import club.banyuan.exception.BuyException;
 import club.banyuan.exception.ChoiceException;
 import club.banyuan.machine.Coin;
 import club.banyuan.machine.Machine;
@@ -70,12 +71,11 @@ public class ShowMenu {
                 flag = true;
                 System.out.println("You have pressed button " + machine.selectProduct(choice).getId());
                 machine.setBeBuyingProduct(machine.selectProduct(choice).getId());
-                try {
-                    machine.buyProduct(machine.selectProduct(choice));
-                } catch (Exception e) {
-                    flag = false;
-                }
+                machine.buyProduct(machine.selectProduct(choice));
             }
+        } catch (BuyException e) {
+            flag = false;
+            System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

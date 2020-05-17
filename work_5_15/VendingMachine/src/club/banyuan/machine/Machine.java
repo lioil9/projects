@@ -1,5 +1,7 @@
 package club.banyuan.machine;
 
+import club.banyuan.exception.BuyException;
+
 public class Machine {
     private int leftCoin;
     private int revenue;
@@ -73,15 +75,16 @@ public class Machine {
      * @param product
      * @throws Exception
      */
-    public void buyProduct(Product product) throws Exception {
-        if (!product.isEmpty() && product.getPrice() <= leftCoin) {
+    public void buyProduct(Product product) throws BuyException {
+        if(product.isEmpty()){
+            throw new BuyException("This product is empty!");
+        }else if(product.getPrice() > leftCoin){
+            throw new BuyException("Your coins isn't enough!");
+        }else {
             int temp = product.getLeftNum();
             product.setLeftNum(--temp);
             revenue += product.getPrice();
             leftCoin -= product.getPrice();
-        } else {
-            System.out.println("invalid choice");
-            throw new Exception();
         }
     }
 
