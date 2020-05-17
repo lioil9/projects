@@ -1,5 +1,7 @@
 package club.banyuan.machine;
 
+import club.banyuan.exception.SetInputException;
+
 public class Product {
     private final String id;
     private String name;
@@ -20,19 +22,24 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws SetInputException {
+        if (name.length() <= 20 && !name.contains(" ")) {
+            this.name = name;
+        } else {
+            throw new SetInputException();
+        }
+
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) throws Exception {
+    public void setPrice(int price) throws SetInputException {
         if (price > 0 && price < 100) {
             this.price = price;
         } else {
-            throw new Exception();
+            throw new SetInputException();
         }
     }
 

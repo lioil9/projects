@@ -23,6 +23,7 @@ public class Machine {
 
     /**
      * 向售货机投钱
+     *
      * @param coin 输入硬币枚举类对象
      */
     public void insertCoin(Coin coin) {
@@ -53,7 +54,7 @@ public class Machine {
         this.beBuyingProduct = beBuyingProduct;
     }
 
-    public void initBeBuyingProduct(){
+    public void initBeBuyingProduct() {
         beBuyingProduct = "=";
     }
 
@@ -68,6 +69,7 @@ public class Machine {
 
     /**
      * 购买商品
+     *
      * @param product
      * @throws Exception
      */
@@ -75,8 +77,9 @@ public class Machine {
         if (!product.isEmpty() && product.getPrice() <= leftCoin) {
             int temp = product.getLeftNum();
             product.setLeftNum(--temp);
+            revenue += product.getPrice();
             leftCoin -= product.getPrice();
-        }else {
+        } else {
             System.out.println("invalid choice");
             throw new Exception();
         }
@@ -94,7 +97,7 @@ public class Machine {
         return sum;
     }
 
-    public int returnLefCoin(){
+    public int returnLefCoin() {
         int temp = leftCoin;
         leftCoin = 0;
         return temp;
@@ -105,14 +108,14 @@ public class Machine {
      *
      * @return
      */
-    public Product selectProduct(int i){
+    public Product selectProduct(int i) {
         if (i > 0 && i <= products.length) {
             return products[i - 1];
         }
         return null;
     }
 
-    public void displayProduct(){
+    public void displayProduct() {
         for (Product product : products) {
             System.out.println(product);
         }
@@ -121,16 +124,20 @@ public class Machine {
     /**
      * 显示机器状态
      */
-    public void machineStatus(){
-        System.out.println("Amount of revenue: $"+revenue);
-        System.out.println("Amount of inserted coins: $"+leftCoin);
-        for(Product product : products){
-            if(product.isEmpty()){
-                System.out.println(product + "(sold out");
-            }else {
-                System.out.println(product + "("+product.getLeftNum()+" left)");
+    public void machineStatus() {
+        System.out.println("Amount of revenue: $" + revenue);
+        System.out.println("Amount of inserted coins: $" + leftCoin);
+        for (Product product : products) {
+            if (product.isEmpty()) {
+                System.out.println(product + "(sold out)");
+            } else {
+                System.out.println(product + "(" + product.getLeftNum() + " left)");
             }
         }
+    }
+
+    public int getLength() {
+        return products.length;
     }
 
 }
