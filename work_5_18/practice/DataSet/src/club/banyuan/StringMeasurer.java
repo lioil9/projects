@@ -3,7 +3,7 @@ package club.banyuan;
 public class StringMeasurer<T> implements Measurer<T> {
 
   @Override
-  public <T> double measure(T anObject) {
+  public double measure(T anObject) {
     if (anObject == null) {
       return 0;
     }
