@@ -2,15 +2,16 @@ package club.banyuan.machine;
 
 import club.banyuan.exception.BuyException;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 public class Machine {
     private int leftCoin;
     private int revenue;
     private String beBuyingProduct;
     private Product[] products = new Product[5];
-
     public Machine() {
     }
-
 
     public void initMachine() {
         leftCoin = 0;

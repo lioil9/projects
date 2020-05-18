@@ -19,21 +19,20 @@ public class Main {
         MenuTree menuTree =new MenuTree(menuList);
         menuList=menuTree.buildTree();
 
-        //System.out.println(TOP_PAGE);
-        Iterator<Menu> it = menuList.iterator();
-        while (it.hasNext()){
-            Menu menu = it.next();
-            System.out.println(menu.getName());
-        }
+//        //System.out.println(TOP_PAGE);
+//        Iterator<Menu> it = menuList.iterator();
+//        while (it.hasNext()){
+//            Menu menu = it.next();
+//            System.out.println(menu.getName());
+//        }
 
         //ShowMenu.showRootMenu(menuList);
-        ShowMenu.showMenu(menuList);
+        ShowMenu.Menu(menuList);
     }
 
     public static void mainInterface(){
         System.out.println(MAIN_PAGE);
         Scanner sc = new Scanner(System.in);
-
 
     }
 

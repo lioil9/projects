@@ -169,18 +169,22 @@ public class ShowMenu {
      * @param machine
      */
     public static void graphicMachine(Machine machine) {
-        System.out.println("*---------------------------*");
-        System.out.println("|     Vending   Machine     |");
-        System.out.println("*---------------------------*");
-        System.out.println("|   A    B    C    D    E   |");
-        //显示价格
+        System.out.println("*-----------------------------*");
+        System.out.println("|      Vending   Machine      |");
+        System.out.println("*-----------------------------*");
         System.out.print("|");
+        for (int i = 1; i <= machine.getLength(); i++) {
+            System.out.printf("%5s", machine.selectProduct(i).getId());
+        }
+        System.out.println("    |");
+        //显示价格
+        System.out.print("| ");
         for (int i = 1; i <= machine.getLength(); i++) {
             System.out.printf("  $%2d", machine.selectProduct(i).getPrice());
         }
-        System.out.println("  |");
+        System.out.println("   |");
         //显示可否被购买
-        System.out.print("|");
+        System.out.print("| ");
         for (int i = 1; i <= machine.getLength(); i++) {
             machine.productStatus();
             if (machine.selectProduct(i).isEmpty()) {
@@ -193,16 +197,14 @@ public class ShowMenu {
                 }
             }
         }
-        System.out.println("  |");
-        System.out.println("*---------------------------*");
+        System.out.println("   |");
+        System.out.println("*-----------------------------*");
         //显示投币余额
-        System.out.print("|                    [$");
-        System.out.printf("%2d", machine.getLeftCoin());
-        System.out.println("]  |");
-        System.out.println("|                           |");
+        System.out.printf("|                     [$%2d]   |\n", machine.getLeftCoin());
+        System.out.println("|                             |");
         //显示当前购买的商品
-        System.out.println("|           [=" + machine.getBeBuyingProduct() + "=]           |");
-        System.out.println("*---------------------------*");
+        System.out.printf("|            [=%s=]            |\n", machine.getBeBuyingProduct());
+        System.out.println("*-----------------------------*");
         System.out.println();
     }
 
