@@ -40,4 +40,21 @@ public class Tester {
     Assert.assertEquals("平均长度:", 6, data.getAverage(), 0);
     Assert.assertEquals("最大长度的字符串", "testing", data.getMaximum());
   }
+
+  @Test
+  public void distanceTest(){
+    double a = 1.2;
+    double b = 1.3;
+    if (Math.abs(b - a) > 0.0000001) {
+
+    }
+    DataSet<Distance> distanceDataSet = new DataSet<>(new CommonMeasurer<>());
+    distanceDataSet.add(new Distance(1000));
+    distanceDataSet.add(new Distance(2000));
+    distanceDataSet.add(new Distance(3000));
+    distanceDataSet.add(new Distance(4000));
+    Assert.assertEquals("平均距离：", 2500, distanceDataSet.getAverage(), 0);
+    Assert.assertEquals("最长距离：", 4000, distanceDataSet.getMaximum().getMeasure(), 0);
+  }
+
 }
