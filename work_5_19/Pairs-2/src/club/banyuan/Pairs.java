@@ -6,8 +6,9 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
 
   /* 声明一对对象的固定大小的数组（最多10个元素） */
     private final Pair<K, V>[] pairs;
-    private int size = 0;
+    private int size;
     private static final int CAPACITY = 10;
+    private int index;
 
   /**
    * 创建一个集合，该集合将存储成对添加的项目。
@@ -15,6 +16,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
   public Pairs() {
     pairs = new Pair[CAPACITY];
     size = 0;
+    index = 0;
   }
 
   /**
@@ -34,6 +36,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
 
   @Override
   public Iterator<Pair<K, V>> iterator() {
+    index = 0;
     return new PairIterator();
   }
 
@@ -46,7 +49,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
 
     @Override
     public boolean hasNext() {
-      throw new UnsupportedOperationException();
+      return index < size;
     }
 
     /**
@@ -54,6 +57,9 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
      */
     @Override
     public Pair<K, V> next() {
+      if(hasNext()){
+        return pairs[index++];
+      }
       throw new UnsupportedOperationException();
     }
 
@@ -62,7 +68,14 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
      */
     @Override
     public void remove() {
-      throw new UnsupportedOperationException();
+      if(index == size-1){
+        pairs[--size] = null;
+      }else if(index < size-1){
+        System.arraycopy(pairs, index+1, pairs, index, size-index-1);
+        pairs[--size]=null;
+      }else {
+        throw new UnsupportedOperationException();
+      }
     }
   }
 
