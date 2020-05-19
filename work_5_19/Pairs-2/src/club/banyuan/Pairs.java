@@ -68,11 +68,13 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
      */
     @Override
     public void remove() {
-      if(index == size-1){
-        pairs[--size] = null;
-      }else if(index < size-1){
-        System.arraycopy(pairs, index+1, pairs, index, size-index-1);
-        pairs[--size]=null;
+      if(index == size){
+        pairs[size-1] = null;
+        size--;
+      }else if(index < size){
+        System.arraycopy(pairs, index, pairs, index-1, size-index);
+        pairs[size-1]=null;
+        size--;
       }else {
         throw new UnsupportedOperationException();
       }
