@@ -54,13 +54,13 @@ public class PointUtils {
     /* 应该是Point [x = 3，y = 3]或Point [x = 1，y = 3] */
     System.out.println(highestPoint(points));
     // TODO 编写一个单元测试
-    Assert.assertEquals(highestPoint(points).toString(),points.get(1).toString());
+    Assert.assertEquals(points.get(1).toString(), highestPoint(points).toString());
     // assert 结果是[x = 3，y = 3] 或  [x = 1，y = 3]中的一个
 
     // 应该是Point[x=2,y=2]
     System.out.println(centroid(points));
     // TODO 编写一个单元测试测试结果
-    Assert.assertEquals(centroid(points).toString(),"Point{x=2, y=2}");
+    Assert.assertEquals("Point{x=2, y=2}", centroid(points).toString());
 
 
     points = new LinkedList<Point>();
@@ -73,11 +73,11 @@ public class PointUtils {
     System.out.println(highestPoint(points));
     // TODO 编写一个单元测试
     // assert 结果是[x=1,y=1] 或  [x=-1,y=1]中的一个
-    Assert.assertEquals(highestPoint(points).toString(),points.get(0).toString());
+    Assert.assertEquals(points.get(0).toString(), highestPoint(points).toString());
 
     // 应该是[x=0,y=0]
     System.out.println(centroid(points));
     // TODO 编写一个单元测试测试结果
-    Assert.assertEquals(centroid(points).toString(),"Point{x=0, y=0}");
+    Assert.assertEquals("Point{x=0, y=0}", centroid(points).toString());
   }
 }
