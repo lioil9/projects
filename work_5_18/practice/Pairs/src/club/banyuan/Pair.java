@@ -10,11 +10,11 @@ public class Pair<T>{
     second = secondElement;
   }
 
-  public Object getFirst() {
+  public T getFirst() {
     return first;
   }
 
-  public Object getSecond() {
+  public T getSecond() {
     return second;
   }
 
