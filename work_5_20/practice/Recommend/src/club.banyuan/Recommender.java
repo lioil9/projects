@@ -1,12 +1,14 @@
 package club.banyuan;
 
+import java.util.List;
+
 public interface Recommender {
-    void addLikes();
+    void addLikes(String name, String project);
 
-    void likeBoth();
+    boolean likeBoth(String name, String projectOne, String projectTwo) throws UnknownPersonException;
 
-    void recommendByPerson();
+    List<String> recommendByPerson(String name) throws UnknownPersonException;
 
-    void recommendByProject();
+    List<String> recommendByProject(String project) throws UnknownProjectException;
 
 }
