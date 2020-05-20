@@ -14,6 +14,6 @@ public class ObjectPairDriverTest {
 
         System.out.println(stadiums[0]);
         System.out.println(ObjectPairDriver.largestStadium(stadiums));
-        Assert.assertEquals(stadiums[1].getFirst().toString(),ObjectPairDriver.largestStadium(stadiums));
+        Assert.assertEquals(stadiums[1].getFirst().toString(), ObjectPairDriver.largestStadium(stadiums));
     }
 }

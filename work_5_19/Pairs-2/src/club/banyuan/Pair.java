@@ -1,10 +1,10 @@
 package club.banyuan;
 
-public class Pair<K,V> {
+public class Pair<K, V> {
 
     private final K first;
     private final V second;
-    
+
 
     public Pair(K first, V second) {
         this.first = first;
