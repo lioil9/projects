@@ -6,9 +6,9 @@ public class PairDriver {
     /**
      * 创建几个体育场对，然后打印容量最大的体育场名称。
      */
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
-
-        Pair[] stadiums = new Pair[3];
+        Pair<String,Integer>[] stadiums = (Pair<String, Integer>[])new Pair[3];
         stadiums[0] = new Pair<>("五棵松", 25000);
         stadiums[1] = new Pair<>("鸟巢", 109901);
         stadiums[2] = new Pair<>("奥体中心", 66233);

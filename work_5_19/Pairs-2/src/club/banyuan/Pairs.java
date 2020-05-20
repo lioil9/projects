@@ -13,8 +13,9 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
   /**
    * 创建一个集合，该集合将存储成对添加的项目。
    */
+  @SuppressWarnings("unchecked")
   public Pairs() {
-    pairs = new Pair[CAPACITY];
+    pairs = (Pair<K, V>[]) new Pair[CAPACITY];
     size = 0;
     index = 0;
   }
