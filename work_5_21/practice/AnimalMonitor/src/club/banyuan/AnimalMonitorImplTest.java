@@ -9,17 +9,20 @@ import org.junit.Test;
 public class AnimalMonitorImplTest {
 
   @Test
-  public void Test(){
+  public void Test() {
     List<Sighting> sightings = new SightingFiller().getSightings();
     sightings.forEach(sighting -> System.out.println(sighting.getDetails()));
-    Consumer<Sighting> getAnimal = e -> e.getAnimal();
 
-//    () -> sightings.forEach(getAnimal)
     AnimalMonitor a = new AnimalMonitorImpl();
-    for (Sighting sighting : sightings) {
-//      AnimalMonitor a1 = sighting::;
-    }
-
+    a.printCounts("山地大猩猩");
+    System.out.println(a.getCount("山地大猩猩"));
+    System.out.println("----------------------------------");
+    a.printSightingsBy(0);
+    System.out.println("----------------------------------");
+    a.printList();
+    a.removeZeroCounts();
+    System.out.println("----------------------------------");
+    a.printList();
   }
 
 }

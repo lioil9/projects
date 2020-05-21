@@ -1,7 +1,13 @@
 package club.banyuan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * 监视不同种类动物的数量。由观察者记录目击事件。
@@ -15,16 +21,16 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    * 创建一个AnimalMonitor。
    */
   public AnimalMonitorImpl() {
-    this.sightings = new ArrayList<>();
+    this.sightings = new SightingFiller().getSightings();
   }
 
 
   /**
    * 打印所有目击动物的详细信息。
    */
-    @Override
-    public void printList() {
-      for (Sighting sighting : sightings) {
+  @Override
+  public void printList() {
+    for (Sighting sighting : sightings) {
       System.out.println(sighting.getDetails());
     }
   }
@@ -37,7 +43,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
   @Override
   public void printSightingsOf(String animal) {
     for (Sighting sighting : sightings) {
-      if(sighting.getAnimal().equals(animal)){
+      if (sighting.getAnimal().equals(animal)) {
         System.out.println(sighting.getDetails());
       }
     }
@@ -51,11 +57,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printSightingsBy(int spotter) {
-    for (Sighting sighting : sightings) {
-      if(sighting.getSpotter() == spotter){
-        System.out.println(sighting.getAnimal());
-      }
-    }
+    sightings.stream().filter(sighting -> sighting.getSpotter() == spotter)
+        .map(Sighting::getDetails)
+        .forEach(System.out::println);
   }
 
   /**
@@ -66,7 +70,13 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printEndangered(List<String> animalNames, int dangerThreshold) {
-
+    Set<String> dangerList = new HashSet<>();
+    for (String animalName : animalNames) {
+      if (getCount(animalName) <= dangerThreshold) {
+        dangerList.add(animalName);
+      }
+    }
+    System.out.println(dangerList);
   }
 
   /**
@@ -77,7 +87,14 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printSightingsInPeriod(int period) {
-    return null;
+    List<Sighting> sightingList = new ArrayList<>();
+    for (Sighting sighting : sightings) {
+      if (sighting.getPeriod() == period) {
+        System.out.println(sighting.getDetails());
+        sightingList.add(sighting);
+      }
+    }
+    return sightingList;
   }
 
   /**
@@ -89,7 +106,15 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printSightingsOfInPeriod(int fromPeriod, int toPeriod, String animal) {
-    return null;
+    List<Sighting> sightingList = new ArrayList<>();
+    for (Sighting sighting : sightings) {
+      if (sighting.getPeriod() >= fromPeriod && sighting.getPeriod() <= toPeriod
+          && sighting.getAnimal().equals(animal)) {
+        System.out.println(sighting.getDetails());
+        sightingList.add(sighting);
+      }
+    }
+    return sightingList;
   }
 
   /**
@@ -99,7 +124,11 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printCounts(String animal) {
-    return null;
+    List<Sighting> countList = sightings.stream()
+        .filter(sighting -> sighting.getAnimal().equals(animal))
+        .collect(Collectors.toList());
+
+    return countList;
   }
 
   /**
@@ -110,7 +139,8 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public int getCount(String animal) {
-    return 0;
+    List<Sighting> countList = printCounts(animal);
+    return countList.stream().mapToInt(Sighting::getCount).sum();
   }
 
   /**
@@ -118,7 +148,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void removeZeroCounts() {
-
+    sightings = sightings.stream()
+        .filter(sighting -> sighting.getCount() != 0)
+        .collect(Collectors.toList());
   }
 
   /**
@@ -130,7 +162,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> getSightingsInArea(String animal, int area) {
-    return null;
+    return sightings.stream()
+        .filter(sighting -> sighting.getAnimal().equals(animal) && sighting.getArea() == area)
+        .collect(Collectors.toList());
   }
 
   /**
@@ -141,7 +175,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> getSightingsOf(String animal) {
-    return null;
+    return sightings.stream()
+        .filter(sighting -> sighting.getAnimal().equals(animal))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -151,7 +187,10 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<String> getAnimalBy(int spotter, int period) {
-    return null;
+    return sightings.stream()
+        .filter(s -> s.getSpotter()==spotter && s.getPeriod()==period && s.getCount()>0)
+        .map(Sighting::getAnimal)
+        .collect(Collectors.toList());
   }
 
   /**
@@ -161,9 +200,28 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Integer> getSpotterBy(String animal, int period) {
-    return null;
+    return sightings.stream()
+        .filter(s -> s.getAnimal().equals(animal) && s.getPeriod()==period)
+        .map(Sighting::getSpotter)
+        .collect(Collectors.toList());
   }
-  public void printList(Sighting sighting){
-    System.out.println(sighting.getDetails());
+
+  @Override
+  public List<String> getAnimalBySpotterInDay(int spotter, int period) {
+    return sightings.stream()
+        .filter(s -> s.getSpotter()==spotter && s.getPeriod()==period)
+        .map(Sighting::getAnimal)
+        .collect(Collectors.toList());
   }
+
+  @Override
+  public int getSpotterInDay(String animal, int period) throws UnKnownSpotterException{
+      for (Sighting sighting : sightings) {
+          if (sighting.getAnimal().equals(animal) && sighting.getPeriod()==period){
+              return sighting.getPeriod();
+          }
+      }
+      throw new UnKnownSpotterException("没有观察者观察到此类动物");
+  }
+
 }

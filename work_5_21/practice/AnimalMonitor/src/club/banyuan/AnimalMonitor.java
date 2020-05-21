@@ -105,6 +105,8 @@ public interface AnimalMonitor {
    */
   List<Integer> getSpotterBy(String animal, int period);
 
+  List<String> getAnimalBySpotterInDay(int spotter, int period);
 
-  void printList(Sighting sighting);
+  int getSpotterInDay(String animal, int period) throws UnKnownSpotterException;
+
 }
