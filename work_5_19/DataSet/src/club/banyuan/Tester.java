@@ -8,7 +8,7 @@ public class Tester {
   @Test
   public void countryTest() {
     Measurer<Country> m = new CommonMeasurer<>();
-    DataSet<Country> countryData = new DataSet<>(m);
+    DataSet<Country> countryData = new DataSet<>(Country::getMeasure);
     countryData.add(new Country(19920));
     countryData.add(new Country(20000));
     countryData.add(new Country(45000));

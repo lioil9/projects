@@ -1,8 +1,10 @@
 package club.banyuan;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class PersonalRecommender implements Recommender {
     private HashMap<String, List<String>> likes = new HashMap<>();
@@ -62,13 +64,13 @@ public class PersonalRecommender implements Recommender {
      */
     @Override
     public List<String> recommendByProject(String project) {
-        List<String> recommendProject = new LinkedList<>();
+        Set<String> recommendProject = new HashSet<>();
         for (List<String> value : likes.values()) {
             if (value.contains(project)) {
                 recommendProject.addAll(value);
                 recommendProject.remove(project);
             }
         }
-        return recommendProject;
+        return new LinkedList<>(recommendProject);
     }
 }
