@@ -59,7 +59,7 @@ public class Prepend implements Timer {
     return time;
   }
 
-  public static void main(String args[]) {
+  public static void main(String[] args) {
     Timer timer = new Prepend();
     LinkedList<Integer> linkedList = new LinkedList<>();
     timer.start();
@@ -67,7 +67,7 @@ public class Prepend implements Timer {
       linkedList.add(0,i);
     }
     timer.stop();
-    System.out.println("LinkedList在第一个元素钱添加："+timer.getTimeMillisecond());
+    System.out.println("LinkedList在第一个元素前添加："+timer.getTimeMillisecond());
     timer.reset();
 
     ArrayList<Integer> arrayList = new ArrayList<>();
@@ -76,7 +76,7 @@ public class Prepend implements Timer {
       arrayList.add(0,i);
     }
     timer.stop();
-    System.out.println("ArrayList在第一个元素钱添加："+timer.getTimeMillisecond());
+    System.out.println("ArrayList在第一个元素前添加："+timer.getTimeMillisecond());
   }
 
 }

@@ -9,6 +9,6 @@ public interface Recommender {
 
     List<String> recommendByPerson(String name) throws UnknownPersonException;
 
-    List<String> recommendByProject(String project) ;
+    List<String> recommendByProject(String project);
 
 }
