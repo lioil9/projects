@@ -18,7 +18,7 @@ public class Main {
             System.out.println(recommender.recommendByProject("see you again"));
             System.out.println(recommender.recommendByProject("see you"));
             System.out.println(recommender.recommendByPerson("leo"));
-        } catch (UnknownPersonException | UnknownProjectException e) {
+        } catch (UnknownPersonException e) {
             System.out.println(e.getMessage());
         }
 

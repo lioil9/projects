@@ -61,16 +61,13 @@ public class PersonalRecommender implements Recommender {
      * @return
      */
     @Override
-    public List<String> recommendByProject(String project) throws UnknownProjectException{
+    public List<String> recommendByProject(String project) {
         List<String> recommendProject = new LinkedList<>();
         for (List<String> value : likes.values()) {
             if (value.contains(project)) {
                 recommendProject.addAll(value);
                 recommendProject.remove(project);
             }
-        }
-        if(recommendProject.size() == 0){
-            throw new UnknownProjectException("库中无此项目");
         }
         return recommendProject;
     }
