@@ -61,22 +61,22 @@ public class Append implements Timer{
   }
 
   public static void main(String[] args) {
-    Timer timer = new Append();
     LinkedList<Integer> linkedList = new LinkedList<>();
-    timer.start();
-    for(int i=0; i<100000; i++){
-      linkedList.add(i);
-    }
-    timer.stop();
-    System.out.println("LinkedList末尾依次往后添加："+timer.getTimeMillisecond());
-    timer.reset();
     ArrayList<Integer> arrayList = new ArrayList<>();
+    calTime("ArrayList", arrayList, 100000);
+    calTime("LinkedList", linkedList, 100000);
+
+  }
+
+  public static void calTime(String name, List<Integer> list, int num){
+    Timer timer = new Append();
     timer.start();
-    for(int i=0; i<100000; i++){
-      arrayList.add(i);
+    for(int i=0; i<num; i++){
+      list.add(i);
     }
     timer.stop();
-    System.out.println("ArrayList末尾依次往后添加："+timer.getTimeMillisecond());
+    System.out.println(name+"末尾依次往后添加："+timer.getTimeMillisecond());
+    timer.reset();
   }
 
 }

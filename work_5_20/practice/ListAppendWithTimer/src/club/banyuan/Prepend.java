@@ -2,6 +2,7 @@ package club.banyuan;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 比较在基于数组的列表和基于链表的列表的第一个元素前插入n个值所需的时间
@@ -60,23 +61,22 @@ public class Prepend implements Timer {
   }
 
   public static void main(String[] args) {
-    Timer timer = new Prepend();
     LinkedList<Integer> linkedList = new LinkedList<>();
-    timer.start();
-    for(int i=0; i<100000; i++){
-      linkedList.add(0,i);
-    }
-    timer.stop();
-    System.out.println("LinkedList在第一个元素前添加："+timer.getTimeMillisecond());
-    timer.reset();
-
     ArrayList<Integer> arrayList = new ArrayList<>();
+    calTime("ArrayList", arrayList, 10000);
+    calTime("LinkedList", linkedList, 10000);
+
+  }
+
+  public static void calTime(String name, List<Integer> list, int num){
+    Timer timer = new Prepend();
     timer.start();
-    for(int i=0; i<100000; i++){
-      arrayList.add(0,i);
+    for(int i=0; i<num; i++){
+      list.add(0,i);
     }
     timer.stop();
-    System.out.println("ArrayList在第一个元素前添加："+timer.getTimeMillisecond());
+    System.out.println(name+"在第一个元素前添加："+timer.getTimeMillisecond());
+    timer.reset();
   }
 
 }
