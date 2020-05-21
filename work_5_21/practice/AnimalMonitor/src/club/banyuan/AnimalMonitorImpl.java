@@ -30,9 +30,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printList() {
-    for (Sighting sighting : sightings) {
-      System.out.println(sighting.getDetails());
-    }
+    sightings.stream()
+        .map(Sighting::getDetails)
+        .forEach(System.out::println);
   }
 
   /**
@@ -42,11 +42,10 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printSightingsOf(String animal) {
-    for (Sighting sighting : sightings) {
-      if (sighting.getAnimal().equals(animal)) {
-        System.out.println(sighting.getDetails());
-      }
-    }
+    sightings.stream()
+        .filter(s -> s.getAnimal().equals(animal))
+        .map(Sighting::getDetails)
+        .forEach(System.out::println);
 
   }
 
@@ -188,7 +187,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
   @Override
   public List<String> getAnimalBy(int spotter, int period) {
     return sightings.stream()
-        .filter(s -> s.getSpotter()==spotter && s.getPeriod()==period && s.getCount()>0)
+        .filter(s -> s.getSpotter() == spotter && s.getPeriod() == period && s.getCount() > 0)
         .map(Sighting::getAnimal)
         .collect(Collectors.toList());
   }
@@ -201,7 +200,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
   @Override
   public List<Integer> getSpotterBy(String animal, int period) {
     return sightings.stream()
-        .filter(s -> s.getAnimal().equals(animal) && s.getPeriod()==period)
+        .filter(s -> s.getAnimal().equals(animal) && s.getPeriod() == period)
         .map(Sighting::getSpotter)
         .collect(Collectors.toList());
   }
@@ -209,19 +208,19 @@ public class AnimalMonitorImpl implements AnimalMonitor {
   @Override
   public List<String> getAnimalBySpotterInDay(int spotter, int period) {
     return sightings.stream()
-        .filter(s -> s.getSpotter()==spotter && s.getPeriod()==period)
+        .filter(s -> s.getSpotter() == spotter && s.getPeriod() == period)
         .map(Sighting::getAnimal)
         .collect(Collectors.toList());
   }
 
   @Override
-  public int getSpotterInDay(String animal, int period) throws UnKnownSpotterException{
-      for (Sighting sighting : sightings) {
-          if (sighting.getAnimal().equals(animal) && sighting.getPeriod()==period){
-              return sighting.getPeriod();
-          }
+  public int getSpotterInDay(String animal, int period) throws UnKnownSpotterException {
+    for (Sighting sighting : sightings) {
+      if (sighting.getAnimal().equals(animal) && sighting.getPeriod() == period) {
+        return sighting.getPeriod();
       }
-      throw new UnKnownSpotterException("没有观察者观察到此类动物");
+    }
+    throw new UnKnownSpotterException("没有观察者观察到此类动物");
   }
 
 }
