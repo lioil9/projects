@@ -1,12 +1,11 @@
 package club.banyuan;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import static java.lang.System.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -30,9 +29,8 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printList() {
-    sightings.stream()
-        .map(Sighting::getDetails)
-        .forEach(System.out::println);
+
+    sightings.forEach(s -> out.println(s.getDetails()));
   }
 
   /**
@@ -44,9 +42,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
   public void printSightingsOf(String animal) {
     sightings.stream()
         .filter(s -> s.getAnimal().equals(animal))
-        .map(Sighting::getDetails)
-        .forEach(System.out::println);
-
+        .forEach(s -> out.println(s.getDetails()));
   }
 
   /**
@@ -56,9 +52,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printSightingsBy(int spotter) {
-    sightings.stream().filter(sighting -> sighting.getSpotter() == spotter)
-        .map(Sighting::getDetails)
-        .forEach(System.out::println);
+    sightings.stream()
+        .filter(sighting -> sighting.getSpotter() == spotter)
+        .forEach(s -> out.println(s.getDetails()));
   }
 
   /**
@@ -69,13 +65,17 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printEndangered(List<String> animalNames, int dangerThreshold) {
+    Map<String,List<Sighting>> collect = sightings.stream()
+        .collect(Collectors.groupingBy(Sighting::getAnimal));
+
+
     Set<String> dangerList = new HashSet<>();
     for (String animalName : animalNames) {
       if (getCount(animalName) <= dangerThreshold) {
         dangerList.add(animalName);
       }
     }
-    System.out.println(dangerList);
+    out.println(dangerList);
   }
 
   /**
@@ -86,13 +86,11 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printSightingsInPeriod(int period) {
-    List<Sighting> sightingList = new ArrayList<>();
-    for (Sighting sighting : sightings) {
-      if (sighting.getPeriod() == period) {
-        System.out.println(sighting.getDetails());
-        sightingList.add(sighting);
-      }
-    }
+    List<Sighting> sightingList = sightings.stream()
+        .filter(s -> s.getPeriod()==period)
+        .collect(Collectors.toList());
+
+    sightingList.forEach(s -> out.println(s.getDetails()));
     return sightingList;
   }
 
@@ -105,15 +103,13 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printSightingsOfInPeriod(int fromPeriod, int toPeriod, String animal) {
-    List<Sighting> sightingList = new ArrayList<>();
-    for (Sighting sighting : sightings) {
-      if (sighting.getPeriod() >= fromPeriod && sighting.getPeriod() <= toPeriod
-          && sighting.getAnimal().equals(animal)) {
-        System.out.println(sighting.getDetails());
-        sightingList.add(sighting);
-      }
-    }
-    return sightingList;
+    List<Sighting> periodList = sightings.stream()
+        .filter(s -> s.getPeriod()>=fromPeriod && s.getPeriod()<=toPeriod)
+        .collect(Collectors.toList());
+
+        periodList.forEach(s -> out.println(s.getDetails()));
+
+    return periodList;
   }
 
   /**
@@ -123,11 +119,10 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printCounts(String animal) {
-    List<Sighting> countList = sightings.stream()
+
+    return sightings.stream()
         .filter(sighting -> sighting.getAnimal().equals(animal))
         .collect(Collectors.toList());
-
-    return countList;
   }
 
   /**
@@ -147,9 +142,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void removeZeroCounts() {
-    sightings = sightings.stream()
-        .filter(sighting -> sighting.getCount() != 0)
-        .collect(Collectors.toList());
+    sightings.removeIf(s -> s.getCount()==0);
   }
 
   /**
@@ -203,6 +196,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
         .filter(s -> s.getAnimal().equals(animal) && s.getPeriod() == period)
         .map(Sighting::getSpotter)
         .collect(Collectors.toList());
+
   }
 
   @Override
