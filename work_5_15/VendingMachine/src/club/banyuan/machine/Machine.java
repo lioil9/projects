@@ -5,6 +5,9 @@ import club.banyuan.exception.BuyException;
 import java.util.ArrayList;
 import java.util.Stack;
 
+/**
+ * 容纳并售卖商品的机器类
+ */
 public class Machine {
     private int leftCoin;
     private int revenue;
@@ -113,10 +116,7 @@ public class Machine {
      * @return
      */
     public Product selectProduct(int i) {
-        if (i > 0 && i <= products.length) {
-            return products[i - 1];
-        }
-        return null;
+        return products[i - 1];
     }
 
     public void displayProduct() {

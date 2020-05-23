@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuTree {
-    private List<Menu> menuList = new ArrayList<Menu>();
+    private List<Menu> menuList;
 
     public MenuTree(List<Menu> menuList) {
         this.menuList=menuList;

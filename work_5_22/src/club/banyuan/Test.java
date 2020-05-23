@@ -13,4 +13,11 @@ public class Test {
   }
 
 
+  @org.junit.Test
+  public void calCol() {
+  }
+
+  @org.junit.Test
+  public void calRaw() {
+  }
 }
