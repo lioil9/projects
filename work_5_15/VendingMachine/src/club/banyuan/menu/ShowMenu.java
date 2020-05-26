@@ -191,15 +191,8 @@ public class ShowMenu {
     System.out.print("| ");
     for (int i = 1; i <= machine.getLength(); i++) {
       machine.productStatus();
-      if (machine.selectProduct(i).isEmpty()) {
-        System.out.print("  [X]");
-      } else {
-        if (machine.selectProduct(i).isStatus()) {
-          System.out.print("  [O]");
-        } else {
-          System.out.print("  [ ]");
-        }
-      }
+      System.out.print(machine.selectProduct(i).isEmpty() ? "  [X]"
+          : (machine.selectProduct(i).isStatus() ? "  [O]" : "  [ ]"));
     }
     System.out.println("   |");
     System.out.println("*-----------------------------*");

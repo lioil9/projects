@@ -14,6 +14,10 @@ public class MenuTree {
     this.menus = menus;
   }
 
+  public List<Menu> getMenus() {
+    return menus;
+  }
+
   public List<Menu> buildMenuTree() {
     return getRootMenu().stream()
         .map(m -> buildChildMenuTree(m, RootDeep))

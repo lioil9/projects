@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 public class PrintHtml {
 
-  public static void calCol(List<Menu> menuList){
-    if(menuList==null || menuList.size()==0){
+  public static void calCol(List<Menu> menuList) {
+    if (menuList == null || menuList.size() == 0) {
       return;
     }
     for (Menu menu : menuList) {
-      menu.setColspan(PrintHtml.calNoChild(menu,0));
+      menu.setColspan(PrintHtml.calNoChild(menu, 0));
       calCol(menu.getChildren());
     }
   }
@@ -28,45 +28,45 @@ public class PrintHtml {
         .filter(Objects::nonNull)
         .collect(Collectors.toList());
     for (Menu menu : collect) {
-      col = calNoChild(menu,col);
+      col = calNoChild(menu, col);
     }
     return col;
   }
 
-  public static void calRaw(List<Menu> menuList) {
-    if(menuList == null || menuList.size() == 0){
+  public static void calRaw(List<Menu> menuList, int deep) {
+    if (menuList == null || menuList.size() == 0) {
       return;
     }
-
-    if(menuList.size() == 1){
-      calRaw(menuList.get(0).getChildren());
-    }else {
-      List<Menu> noChildrenNode = menuList.stream()
-          .filter(menu -> menu==null || menu.getChildren().size()==0)
-          .collect(Collectors.toList());
-      List<Menu> tempList = menuList;
-      tempList.removeAll(noChildrenNode);
-      int d = 0;
-      for (Menu menu : tempList) {
-        if(d < getDeepest(menu)){
-          d = getDeepest(menu);
-        }
-      }
-      for (Menu menu : noChildrenNode) {
-        menu.setRowspan(d-menu.getDeep());
-      }
-      for (Menu resp : menuList) {
-        calRaw(resp.getChildren());
-      }
-    }
+    List<Menu> noChildrenNode = menuList.stream()
+        .filter(menu -> menu == null || menu.getChildren().size() == 0)
+        .collect(Collectors.toList());
+    noChildrenNode.forEach(menu -> menu.setRowspan(deep - menu.getDeep() + 1));
+    menuList.forEach(menu -> calRaw(menu.getChildren(), deep));
   }
 
-  public static int getDeepest(Menu node){
-
-    if(node.getChildren().size()!=0){
-      node.getChildren().forEach(PrintHtml::getDeepest);
+  public static int getDeepest(Menu node) {
+    if (node.getChildren().size() == 0) {
+      return node.getDeep();
     }
-    return node.getDeep();
+    int deep = node.getDeep();
+    for (Menu menu : node.getChildren()) {
+      if (deep < getDeepest(menu)) {
+        deep = getDeepest(menu);
+      }
+    }
+    return deep;
+  }
+
+  public static void printHtml(Menu node) {
+    System.out.print("<td");
+    if (node.getColspan() != null) {
+      System.out.print((node.getColspan() == 0) ? "" : " colspan=" + node.getColspan());
+    }
+    if (node.getRowspan() != null) {
+      System.out.print((node.getRowspan() == 0) ? "" : " rowspan=" + node.getRowspan());
+    }
+    System.out.print(">" + node.getName());
+    System.out.print("</td>");
   }
 
 
