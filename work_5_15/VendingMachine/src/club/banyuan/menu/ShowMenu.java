@@ -173,35 +173,37 @@ public class ShowMenu {
    * @param machine 贩卖机对象
    */
   public static void graphicMachine(Machine machine) {
-    System.out.println("*-----------------------------*");
-    System.out.println("|      Vending   Machine      |");
-    System.out.println("*-----------------------------*");
+    System.out.printf("*%"+machine.getLength()+"s*\n","------");
+//    System.out.println("*------------------------------*");
+    System.out.printf("|%"+machine.getLength()*2+"sVending    Machine%"+machine.getLength()*2+"s|\n", "", "");
+    System.out.printf("*%"+machine.getLength()+"s*\n","------");
+//    System.out.println("*------------------------------*");
     System.out.print("|");
     for (int i = 1; i <= machine.getLength(); i++) {
-      System.out.printf("%5s", machine.selectProduct(i).getId());
+      System.out.printf("%6s", machine.selectProduct(i).getId());
     }
-    System.out.println("    |");
+    System.out.println("      |");
     //显示价格
     System.out.print("| ");
     for (int i = 1; i <= machine.getLength(); i++) {
-      System.out.printf("  $%2d", machine.selectProduct(i).getPrice());
+      System.out.printf("%3s$%2d", "",machine.selectProduct(i).getPrice());
     }
-    System.out.println("   |");
+    System.out.println("     |");
     //显示可否被购买
     System.out.print("| ");
     for (int i = 1; i <= machine.getLength(); i++) {
       machine.productStatus();
-      System.out.print(machine.selectProduct(i).isEmpty() ? "  [X]"
-          : (machine.selectProduct(i).isStatus() ? "  [O]" : "  [ ]"));
+      System.out.print(machine.selectProduct(i).isEmpty() ? "   [X]"
+          : (machine.selectProduct(i).isStatus() ? "   [O]" : "   [ ]"));
     }
-    System.out.println("   |");
-    System.out.println("*-----------------------------*");
+    System.out.println("     |");
+    System.out.printf("*%"+machine.getLength()+"s*\n","------");
     //显示投币余额
-    System.out.printf("|                     [$%2d]   |\n", machine.getLeftCoin());
-    System.out.println("|                             |");
+    System.out.printf("|%34s[$%2d]   |\n", "", machine.getLeftCoin());
+    System.out.printf("|%42s|\n","");
     //显示当前购买的商品
-    System.out.printf("|            [=%s=]            |\n", machine.getBeBuyingProduct());
-    System.out.println("*-----------------------------*");
+    System.out.printf("|%18s[=%s=]%18s |\n", "",machine.getBeBuyingProduct(),"");
+    System.out.printf("*%"+machine.getLength()+"s*\n","------");
     System.out.println();
   }
 

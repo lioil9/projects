@@ -12,7 +12,7 @@ public class Machine {
     private int leftCoin;
     private int revenue;
     private String beBuyingProduct;
-    private Product[] products = new Product[5];
+    private Product[] products = new Product[6];
     public Machine() {
     }
 
@@ -25,6 +25,7 @@ public class Machine {
         products[2] = new Product("C", "Tea", 5, 2);
         products[3] = new Product("D", "Water", 8, 1);
         products[4] = new Product("E", "Coffee", 7, 9);
+        products[5] = new Product("F", "Milk", 12, 9);
     }
 
     /**

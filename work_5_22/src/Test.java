@@ -25,9 +25,10 @@ public class Test extends JFrame implements ActionListener {
 
     //北边：时间显示区域
     timeArea = new JTextArea("", 1, 12);
-    timeArea.setFont(new Font("宋体", Font.ITALIC, 24));
+    timeArea.setFont(new Font("宋体", Font.BOLD, 24));
     timeArea.setText("00:00:00");
-    contentPane.add(timeArea, BorderLayout.NORTH);//中间：启动和暂停按钮
+    contentPane.add(timeArea, BorderLayout.NORTH);
+    //中间：启动和暂停按钮
     JPanel pCenter = new JPanel(new GridLayout(1, 2));
     startBtn = new JButton("开始");
     pCenter.add(startBtn);
@@ -37,7 +38,9 @@ public class Test extends JFrame implements ActionListener {
     pauseBtn.addActionListener(this);
     contentPane.add(pCenter, BorderLayout.CENTER);
     //南边：复位按钮
+    JPanel sCenter = new JPanel(new GridLayout(1, 1));
     resetBtn = new JButton("复位");
+    sCenter.add(resetBtn);
     resetBtn.addActionListener(this);
     contentPane.add(resetBtn, BorderLayout.SOUTH);
 
