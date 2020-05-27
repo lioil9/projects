@@ -1,11 +1,13 @@
 package club.banyuan;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 public class IOString {
 
@@ -57,6 +59,7 @@ public class IOString {
             String str = i * j + " ";
             outFile.write(str.getBytes());
           }
+          outFile.write("\n".getBytes());
         }
         outFile.close();
       } catch (IOException e) {
@@ -68,7 +71,15 @@ public class IOString {
   }
 
   public static void main(String[] args) {
-    writeTables("test.txt", 6);
+//    writeTables("test.txt", 10);
+    File file = new File("test.txt");
+    try {
+      int n[] = {1,2,3,4,9};
+      InputStream is = new FileInputStream(file);
+      System.out.println(Arrays.toString(loadArray(is, n)));
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
   }
 
 }

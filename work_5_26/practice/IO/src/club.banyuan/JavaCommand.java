@@ -1,5 +1,6 @@
 package club.banyuan;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,9 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
-import java.util.Objects;
 
 public class JavaCommand {
 
@@ -118,23 +118,33 @@ public class JavaCommand {
       if (newFile.exists()) {
         System.out.println("当前路径文件已存在");
         return;
-      } else {
-        try {
-          newFile.createNewFile();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
       }
+//      else {
+//        try {
+//          newFile.createNewFile();
+//        } catch (IOException e) {
+//          e.printStackTrace();
+//        }
+//      }
       try {
         FileInputStream fileIn = new FileInputStream(oldFile);
-        FileOutputStream fileOut = new FileOutputStream(newFile, true);
+        FileOutputStream fileOut = new FileOutputStream(newFile);
         byte[] b = new byte[1024];
+        int count = 0;
+        double sumCount = 0;
         try {
-          while ((fileIn.read(b)) != -1) {
+//          do {
+//            count = fileIn.read(b);
+//            fileOut.write(b);
+//            System.out.println(count);
+//          } while (count != -1);
+          count = fileIn.read(b);
+          while (count != -1) {
+            sumCount += count;
             fileOut.write(b);
+            System.out.printf("%.2f%%\n",sumCount/oldFile.length()*100);
+            count = fileIn.read(b);
           }
-          fileIn.close();
-          fileOut.close();
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -174,14 +184,14 @@ public class JavaCommand {
   }
 
   public static void commandCat(String[] args) {
-    if(args.length==2){
+    if (args.length == 2) {
       File file = new File(args[1]);
-      if(file.exists() && file.isFile()){
+      if (file.exists() && file.isFile()) {
         try {
           FileReader fr = new FileReader(file);
           BufferedReader br = new BufferedReader(fr);
           String out = br.readLine();
-          while (out != null){
+          while (out != null) {
             System.out.println(out);
             out = br.readLine();
           }
@@ -193,7 +203,7 @@ public class JavaCommand {
       } else {
         System.out.println("路径不为文件或文件不存在！");
       }
-    }else {
+    } else {
       System.out.println("输入不合法");
     }
 
