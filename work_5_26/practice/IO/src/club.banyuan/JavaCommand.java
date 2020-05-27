@@ -196,5 +196,7 @@ public class JavaCommand {
     }else {
       System.out.println("输入不合法");
     }
+
+
   }
 }

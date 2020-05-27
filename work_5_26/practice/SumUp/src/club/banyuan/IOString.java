@@ -22,6 +22,7 @@ public class IOString {
       } catch (IOException e) {
         e.printStackTrace();
       }
+
     }
     try {
       is.close();
