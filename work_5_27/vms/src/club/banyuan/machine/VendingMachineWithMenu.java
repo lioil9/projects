@@ -249,9 +249,8 @@ public class VendingMachineWithMenu implements MenuFlow<FlowStatus>, Serializabl
           menu.back();
           break;
         case QUIT:
-          flowStatus = ROOT;
+          // TODO 返回主菜单并保存信息
           menu.back();
-//          menuNode = ROOT;
           Main.serializeVendingMachine(this);
           System.exit(0);
       }
