@@ -17,7 +17,6 @@ public class Main {
     // VendingMachine vendingMachine = new VendingMachine();
     // vendingMachine.start();
     VendingMachineWithMenu vendingMachineWithMenu = deserializeVendingMachine();
-    vendingMachineWithMenu.setFlowStatus(FlowStatus.ROOT);
     if(vendingMachineWithMenu == null) {
       vendingMachineWithMenu = new VendingMachineWithMenu();
     }
@@ -39,8 +38,12 @@ public class Main {
 
   public static VendingMachineWithMenu deserializeVendingMachine() {
     try {
+      File file = new File("./information/vms.txt");
+      if(!file.exists()){
+        return null;
+      }
       ObjectInputStream ois = new ObjectInputStream(
-          new FileInputStream(new File("./information/vms.txt")));
+          new FileInputStream(file));
       VendingMachineWithMenu vms = (VendingMachineWithMenu) ois.readObject();
       return vms;
     } catch (IOException | ClassNotFoundException e) {
