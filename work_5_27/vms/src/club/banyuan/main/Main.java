@@ -3,8 +3,6 @@ package club.banyuan.main;
 import club.banyuan.machine.FlowStatus;
 import club.banyuan.machine.VendingMachine;
 import club.banyuan.machine.VendingMachineWithMenu;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;

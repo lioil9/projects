@@ -1,6 +1,6 @@
 public class CellularPhone extends Thread {
 
-  private volatile boolean callInProgress = false;
+  private boolean callInProgress = false;
   private volatile boolean keepGoing = true;
 
   public CellularPhone(String name) {

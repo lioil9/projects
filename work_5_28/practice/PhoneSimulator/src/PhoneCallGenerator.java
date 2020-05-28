@@ -6,7 +6,7 @@ import java.util.Random;
  */
 public class PhoneCallGenerator extends Thread {
 
-  private CellularPhone phone;
+  private final CellularPhone phone;
 
   public PhoneCallGenerator(String name, CellularPhone thePhone) {
     super(name);
@@ -28,12 +28,13 @@ public class PhoneCallGenerator extends Thread {
           phone.startCall(getName(), Integer.toString(counter));
           // 呼叫开始，休眠随机生成的时间，然后结束通话
           sleep(length * 1000);
-            phone.endCall(getName(), Integer.toString(counter));
-            // 让其他线程有机会
+          phone.endCall(getName(), Integer.toString(counter));
+          // 让其他线程有机会
           sleep(randomGenerator.nextInt(2));
         }
       }
     } catch (InterruptedException e) {
+
     }
   }
 }
