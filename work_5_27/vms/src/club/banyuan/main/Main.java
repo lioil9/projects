@@ -3,13 +3,17 @@ package club.banyuan.main;
 import club.banyuan.machine.FlowStatus;
 import club.banyuan.machine.VendingMachine;
 import club.banyuan.machine.VendingMachineWithMenu;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import netscape.javascript.JSObject;
 
 public class Main {
 
