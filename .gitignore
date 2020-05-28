@@ -5,4 +5,5 @@
 !*.jar
 !*.html
 !*.txt
+!*.code
 !.gitignore

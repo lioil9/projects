@@ -16,7 +16,7 @@ public class IOString {
     for (int i = 0; i < n.length; i++) {
       byte[] b = new byte[n[i]];
       try {
-        if (is.read(b) == -1 && i != n.length - 1) {
+        if (is.read(b) != i) {
           throw new RuntimeException();
         } else {
           str[i] = new String(b);
