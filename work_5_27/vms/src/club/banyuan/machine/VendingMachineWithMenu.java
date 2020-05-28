@@ -7,6 +7,11 @@ import club.banyuan.menu.Menu;
 import club.banyuan.menu.MenuFlow;
 import club.banyuan.menu.MenuNode;
 import club.banyuan.menu.MenuType;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -23,11 +28,12 @@ public class VendingMachineWithMenu implements MenuFlow<FlowStatus>, Serializabl
   public static final String PRODUCT_DEFAULT = " ";
   public static final int FULL_INVENTORY = 10;
 
-
+  @JSONField(name = "menu")
   private Menu<FlowStatus> menu;
   private static final int password = 1110;
-
+  @JSONField(name = "userAmount")
   private int userAmount;
+  @JSONField(name = "salesAmount")
   private int salesAmount;
   private String purchasedProduct = NO_PURCHASE;
   private final Shelf[] shelves = new Shelf[SHELVES_NUM];
@@ -501,5 +507,7 @@ public class VendingMachineWithMenu implements MenuFlow<FlowStatus>, Serializabl
   public void setFlowStatus(FlowStatus flowStatus) {
     this.flowStatus = flowStatus;
   }
+
+
 
 }
