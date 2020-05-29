@@ -72,6 +72,6 @@ public class CellularPhone extends Thread {
         }
       }
     }
-
   }
+
 }

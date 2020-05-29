@@ -12,7 +12,6 @@ public class Driver {
     pcGen2.start();
 
     try {
-
       // 等待，直到所有的电话都结束
       pcGen1.join();
       pcGen2.join();
