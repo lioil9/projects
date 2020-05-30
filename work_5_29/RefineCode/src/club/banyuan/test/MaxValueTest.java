@@ -1,12 +1,11 @@
 package club.banyuan.test;
 
-import club.banyuan.MaxMultithreaded;
-import org.junit.Test;
-
-import java.util.Random;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+import club.banyuan.MaxMultithreaded;
+import java.util.Random;
+import org.junit.Test;
 
 public class MaxValueTest {
 
@@ -62,4 +61,5 @@ public class MaxValueTest {
         assertTrue(parallelTime <= seqTime / ((2./3)*numThreads));
         assertEquals(parallelMax, seqMax, 1e-9);
     }
+
 }
