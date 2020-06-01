@@ -32,6 +32,8 @@ class addCounter extends Thread{
 
     @Override
     public void run() {
-        SharedCounter.counter += num;
+        synchronized (SharedCounter.class) {
+            SharedCounter.counter += num;
+        }
     }
 }

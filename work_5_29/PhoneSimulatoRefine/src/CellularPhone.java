@@ -7,7 +7,7 @@ public class CellularPhone extends Thread {
 
   private volatile boolean callInProgress = false;
   private volatile boolean keepGoing = true;
-  private  static final Lock lock = new ReentrantLock();
+  private static final Lock lock = new ReentrantLock();
   private List<String> messages = new ArrayList<>();
 
   public CellularPhone(String name) {
@@ -31,14 +31,13 @@ public class CellularPhone extends Thread {
    * @returns 如果调用被接受，则为true
    */
   public boolean startCall(String name, String callDisplayMessage) {
-    if(!callInProgress) {
-      lock.lock();
-      display("<" + name + ">: Call (" + callDisplayMessage + ") begins");
-      callInProgress = true;
-      return true;
-    } else {
-      return false;
-    }
+      if (lock.tryLock()) {
+        display("<" + name + ">: Call (" + callDisplayMessage + ") begins");
+        callInProgress = true;
+        return true;
+      } else {
+        return false;
+      }
   }
 
   /**
@@ -48,6 +47,9 @@ public class CellularPhone extends Thread {
    * @param callDisplayMessage 要显示的消息
    */
   public void endCall(String name, String callDisplayMessage) {
+    if (!callInProgress) {
+      throw new IllegalStateException("没有打电话，就要挂掉电话");
+    }
     display("   <" + name + ">: Call (" + callDisplayMessage + ") ends");
     callInProgress = false;
     lock.unlock();
@@ -67,11 +69,11 @@ public class CellularPhone extends Thread {
     keepGoing = false;
   }
 
-  public void addMessage(String newMessage){
-    messages.add("<"+this.getName()+">: Message: "+newMessage);
+  public void addMessage(String newMessage) {
+    messages.add("<" + this.getName() + ">: Message: " + newMessage);
   }
 
-  private void displayMessages(){
+  private void displayMessages() {
     messages.forEach(this::display);
     messages.clear();
   }
@@ -83,17 +85,20 @@ public class CellularPhone extends Thread {
   public void run() {
     // 循环直到stopPhone被调用
     while (keepGoing) {
+      lock.lock();
       // 如果没有电话
       if (!callInProgress) {
         displayMessages();
         displayWaiting();
-
+        lock.unlock();
         // 假装手机在做别的事情
         try {
           Thread.sleep(1000);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
+      } else {
+        lock.unlock();
       }
     }
   }

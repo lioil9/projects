@@ -1,5 +1,6 @@
 package club.banyuan;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -23,22 +24,20 @@ public class Fork {
     return status;
   }
 
-  public void takeFork(){
-    lock.lock();
-//    while (this.status){
-//      try {
-//        this.wait();
-//      } catch (InterruptedException e) {
-//        e.printStackTrace();
-//      }
-      status = true;
-//    }
-    lock.unlock();
+  public boolean takeFork(){
+    try {
+      if(!lock.tryLock(500, TimeUnit.MILLISECONDS)){
+        return false;
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    return true;
   }
+
+
   public void putFork(){
-    lock.lock();
-    status = false;
-    forkLock.signalAll();
     lock.unlock();
   }
+
 }

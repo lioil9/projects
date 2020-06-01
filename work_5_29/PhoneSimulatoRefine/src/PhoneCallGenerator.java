@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -11,7 +10,6 @@ public class PhoneCallGenerator extends Thread {
 
   private final CellularPhone phone;
   private static final Lock lock = new ReentrantLock();
-  private  static final Condition phoneLock = lock.newCondition();
 
   public PhoneCallGenerator(String name, CellularPhone thePhone) {
     super(name);
