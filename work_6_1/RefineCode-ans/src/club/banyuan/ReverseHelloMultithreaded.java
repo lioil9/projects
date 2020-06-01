@@ -1,8 +1,9 @@
 package club.banyuan;
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ReverseHelloMultithreaded {
 
@@ -14,15 +15,13 @@ public class ReverseHelloMultithreaded {
     ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     if (num <= 50) {
-
-      Thread thread = new Thread(() -> helloThread(num + 1), num + "");
-      thread.start();
+      Future<String> future = executorService.submit(() ->
+        helloThread(num+1),num+"");
       try {
-        thread.join();
-      } catch (InterruptedException e) {
+        System.out.println("Hello from thread " + future.get());
+      } catch (InterruptedException | ExecutionException e) {
         e.printStackTrace();
       }
-      System.out.println("Hello from thread " + thread.getName());
     }
   }
 }

@@ -2,7 +2,38 @@ package club.banyuan;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+/**
+ * 线程计算数组元素的正弦值的和。
+ */
+class SumThread extends Thread {
+
+  private int lo, hi;
+  private int[] arr;
+  private double ans = 0;
+
+  public SumThread(int[] arr, int lo, int hi) {
+    this.lo = lo;
+    this.hi = hi;
+    this.arr = arr;
+  }
+
+  @Override
+  public void run() {
+    for (int i = lo; i < hi; i++) {
+      ans += Math.sin(arr[i]);
+    }
+  }
+
+  public double getAns() {
+    return ans;
+  }
+}
 
 class SumCallable implements Callable<Double> {
 
@@ -39,12 +70,12 @@ public class SumMultithreaded {
     int len = arr.length;
     double ans = 0;
 
-    ExecutorService executorService = Executors.newFixedThreadPool(5);
+    ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
     // 创建并启动线程。
     List<Future<Double>> ts = new ArrayList<>(numThreads);
     for (int i = 0; i < numThreads; i++) {
       SumCallable sumCallable = new SumCallable(arr, (i * len) / numThreads,
-              ((i + 1) * len / numThreads));
+          ((i + 1) * len / numThreads));
       ts.add(executorService.submit(sumCallable));
     }
 
