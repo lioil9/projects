@@ -1,29 +1,27 @@
 package club.banyuan;
 
-/**
- * 线程计算数组元素的正弦值的和。
- */
-class SumThread extends Thread {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
+
+class SumCallable implements Callable<Double> {
 
   private int lo, hi;
   private int[] arr;
-  private double ans = 0;
 
-  public SumThread(int[] arr, int lo, int hi) {
+  public SumCallable(int[] arr, int lo, int hi) {
     this.lo = lo;
     this.hi = hi;
     this.arr = arr;
   }
 
   @Override
-  public void run() {
+  public Double call() throws Exception {
+    double rlt = 0;
     for (int i = lo; i < hi; i++) {
-      ans += Math.sin(arr[i]);
+      rlt += Math.sin(arr[i]);
     }
-  }
-
-  public double getAns() {
-    return ans;
+    return rlt;
   }
 }
 
@@ -41,17 +39,24 @@ public class SumMultithreaded {
     int len = arr.length;
     double ans = 0;
 
+    ExecutorService executorService = Executors.newFixedThreadPool(5);
     // 创建并启动线程。
-    SumThread[] ts = new SumThread[numThreads];
+    List<Future<Double>> ts = new ArrayList<>(numThreads);
     for (int i = 0; i < numThreads; i++) {
-      ts[i] = new SumThread(arr, (i * len) / numThreads, ((i + 1) * len / numThreads));
-      ts[i].start();
+      SumCallable sumCallable = new SumCallable(arr, (i * len) / numThreads,
+              ((i + 1) * len / numThreads));
+      ts.add(executorService.submit(sumCallable));
     }
 
     // 等待线程完成并计算它们的结果。
     for (int i = 0; i < numThreads; i++) {
-      ts[i].join();
-      ans += ts[i].getAns();
+      try {
+        Future<Double> future = ts.get(i);
+        future.get();
+        ans += future.get();
+      } catch (ExecutionException e) {
+        e.printStackTrace();
+      }
     }
     return ans;
   }
