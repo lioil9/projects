@@ -25,15 +25,11 @@ public class Chopsticks {
     System.out.println(Thread.currentThread().getName() + "拿起筷子:" + code);
   }
 
-  public boolean take(long maxWaitTime) {
+  public boolean take(long maxWaitTime) throws InterruptedException {
     System.out.println(Thread.currentThread().getName() + ",准备拿起筷子:" + code);
-    try {
       if (!lock.tryLock(maxWaitTime, TimeUnit.MILLISECONDS)) {
         return false;
       }
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
     System.out.println(Thread.currentThread().getName() + "拿起筷子:" + code);
     return true;
   }

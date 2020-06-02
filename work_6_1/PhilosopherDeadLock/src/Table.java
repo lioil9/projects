@@ -1,5 +1,6 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Table {
 
@@ -21,13 +22,41 @@ public class Table {
     philosophers[3] = new Philosopher(4, chopsticks);
     philosophers[4] = new Philosopher(5, chopsticks);
 
+
+//    try {
+//      Thread.sleep(1000);
+//      for (Philosopher philosopher : philosophers) {
+//        philosopher.interrupt();
+//      }
+//    } catch (InterruptedException e) {
+//      e.printStackTrace();
+//    }
+//    long starTime = System.currentTimeMillis();
+
     for (Philosopher philosopher : philosophers) {
       executorService.submit(philosopher);
+//      philosopher.start();
+    }
+//    try {
+//      Thread.sleep(3000);
+//      for (Philosopher philosopher : philosophers) {
+//        philosopher.interrupt();
+//      }
+//    } catch (InterruptedException e){
+//      e.printStackTrace();
+//    }
+    long starTime = System.currentTimeMillis();
+    try {
+      executorService.awaitTermination(3000, TimeUnit.MILLISECONDS);
+      executorService.shutdownNow();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
 
     for (Philosopher philosopher : philosophers) {
       philosopher.printTimes();
     }
+    System.out.println(System.currentTimeMillis()-starTime);
 
   }
 }

@@ -9,16 +9,16 @@ public class AbstractPhilosopher extends Thread {
     this.eatTimes = 0;
     this.thinkTimes = 0;
   }
-  public void eat() {
+  public void eat() throws InterruptedException {
     if (!left.take(500)) {
       System.out.println("没拿到筷子，不吃了");
       return;
     }
-    try {
+//    try {
       Thread.sleep(200);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+//    } catch (InterruptedException e) {
+//      e.printStackTrace();
+//    }
     if (!right.take(500)) {
       System.out.println("没拿到筷子，不吃了");
       left.put();
@@ -26,24 +26,24 @@ public class AbstractPhilosopher extends Thread {
     }
     System.out.println(getName() + ",吃饭");
     eatTimes++;
-    try {
+//    try {
       Thread.sleep(1000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+//    } catch (InterruptedException e) {
+//      e.printStackTrace();
+//    }
     left.put();
     right.put();
     System.out.println(getName() + ",吃饭结束");
   }
 
-  public void thinking() {
+  public void thinking() throws InterruptedException {
     System.out.println(getName() + ",思考");
     thinkTimes++;
-    try {
+//    try {
       Thread.sleep(200);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+//    } catch (InterruptedException e) {
+//      e.printStackTrace();
+//    }
     System.out.println(getName() + ",思考结束");
   }
 

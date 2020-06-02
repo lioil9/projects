@@ -22,16 +22,23 @@ public class Philosopher extends AbstractPhilosopher {
 
   @Override
   public void run() {
+    long finishTime = 1000;
     Random random = new Random();
-
-    while (true) {
-      if (random.nextBoolean()) {
-        eat();
-      } else {
-        thinking();
+    long startTime = System.currentTimeMillis();
+    while (!interrupted()) {
+      try {
+        if (random.nextBoolean()) {
+          eat();
+        } else {
+          thinking();
+        }
+      } catch (InterruptedException e) {
+//        this.interrupt();
+        Thread.currentThread().interrupt();
       }
-      this.printTimes();
     }
-
+//      if(System.currentTimeMillis() - startTime>=finishTime){
+//        return;
+//      }
   }
 }

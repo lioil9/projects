@@ -53,7 +53,6 @@ public class MaxMultithreaded {
       futureList.add(executorService.submit(maxCallable));
     }
 
-
     // 等待线程完成并计算它们的结果。
     for (int i = 0; i < numThreads; i++) {
       try {
