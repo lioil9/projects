@@ -1,11 +1,8 @@
 package club.banyuan;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class SharedCounter {
 
@@ -16,25 +13,29 @@ public class SharedCounter {
     counter = 0;
   }
 
-  public static int increment(int numThreads, int numIncrementsPerThread) {
+  public static int increment(int numThreads, int numIncrementsPerThread)
+      throws InterruptedException {
     ExecutorService executorService = Executors.newSingleThreadExecutor();
-    List<Future<Integer>> list = new ArrayList<>();
+//    List<Future<?>> list = new ArrayList<>();
+
     for (int i = 0; i < numThreads; i++) {
-      Future<Integer> future = executorService.submit(() -> {
+      executorService.submit(() -> {
         synchronized (SharedCounter.class) {
           counter += numIncrementsPerThread;
-          return counter;
         }
       });
-      list.add(future);
+//      list.add(future);
     }
-    list.forEach(s -> {
-      try {
-        s.get();
-      } catch (InterruptedException | ExecutionException e) {
-        e.printStackTrace();
-      }
-    });
+//    list.forEach(s -> {
+//      try {
+//        s.get();
+//      } catch (InterruptedException | ExecutionException e) {
+//        e.printStackTrace();
+//      }
+//    });
+    executorService.shutdown();
+    executorService.awaitTermination(1000, TimeUnit.MILLISECONDS);
+//    executorService.shutdownNow();
     return counter;
   }
 }

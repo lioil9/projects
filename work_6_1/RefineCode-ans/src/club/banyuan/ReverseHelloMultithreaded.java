@@ -23,5 +23,6 @@ public class ReverseHelloMultithreaded {
         e.printStackTrace();
       }
     }
+    executorService.shutdown();
   }
 }

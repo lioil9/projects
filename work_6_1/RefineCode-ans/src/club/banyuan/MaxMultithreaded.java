@@ -52,7 +52,6 @@ public class MaxMultithreaded {
       MaxCallable maxCallable = new MaxCallable(arr, (i * len) / numThreads, ((i + 1) * len / numThreads));
       futureList.add(executorService.submit(maxCallable));
     }
-
     // 等待线程完成并计算它们的结果。
     for (int i = 0; i < numThreads; i++) {
       try {
@@ -64,6 +63,8 @@ public class MaxMultithreaded {
         e.printStackTrace();
       }
     }
+
+    executorService.shutdown();
     return ans;
   }
 }
