@@ -13,7 +13,6 @@ public class UdpServer {
     System.out.println("本机为服务机，ip为"+InetAddress.getLocalHost().getHostAddress());
 
     while (true) {
-//      ds.getReceiveBufferSize();
       byte[] buffer = new byte[1024];
       System.out.println("等待接收消息中。。。");
       DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
