@@ -16,11 +16,7 @@ public class UdpTest {
         while (true) {
           byte[] buffer = new byte[1024];
           DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
-          try {
-            ds.receive(dp);
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
+          ds.receive(dp);
           System.out
               .print("收到来自[" + dp.getAddress().getHostAddress() + ":" + dp.getPort() + "]的信息：");
           System.out.println(new String(dp.getData(), 0, dp.getLength()));
@@ -39,14 +35,10 @@ public class UdpTest {
           String sendInfo = sc.nextLine();
           byte[] bytes = sendInfo.getBytes();
           DatagramPacket dp = null;
-          try {
-            dp = new DatagramPacket(bytes, bytes.length,
-                InetAddress.getByName("192.168.10.12"),
-                10002);
-            ds.send(dp);
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
+          dp = new DatagramPacket(bytes, bytes.length,
+              InetAddress.getByName("192.168.10.12"),
+              10002);
+          ds.send(dp);
         }
       } catch (IOException e) {
         e.printStackTrace();
