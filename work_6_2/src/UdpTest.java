@@ -34,10 +34,9 @@ public class UdpTest {
         while (true) {
           String sendInfo = sc.nextLine();
           byte[] bytes = sendInfo.getBytes();
-          DatagramPacket dp = null;
-          dp = new DatagramPacket(bytes, bytes.length,
-              InetAddress.getByName("192.168.10.12"),
-              10002);
+          DatagramPacket dp = new DatagramPacket(bytes, bytes.length,
+              InetAddress.getByName("192.168.118.2"),
+              10000);
           ds.send(dp);
         }
       } catch (IOException e) {
