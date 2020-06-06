@@ -2,8 +2,6 @@ package club.banyuan;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -28,8 +26,8 @@ public class Server {
       byte[] s = new byte[1];
       bis.read(s);
 
-      Socket newSocket = new Socket(socket.getInetAddress().getHostAddress(), socket.getPort());
-      BufferedOutputStream bos = new BufferedOutputStream(newSocket.getOutputStream());
+//      Socket newSocket = new Socket(socket.getInetAddress().getHostAddress(), socket.getPort());
+      BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
       byte[] bytes = new byte[1024];
       System.out.println("接收到文件！");
       while (bis.read(bytes) != -1) {

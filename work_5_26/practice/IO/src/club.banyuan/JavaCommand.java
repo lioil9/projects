@@ -1,6 +1,5 @@
 package club.banyuan;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 
 public class JavaCommand {
@@ -50,7 +48,7 @@ public class JavaCommand {
   }
 
   public static void printDetail(File[] child) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     for (File file : child) {
       System.out.printf("%-16s", file.isDirectory() ? "d" : "-");
       System.out.printf("%-16s", file.isFile() ? file.length() : "0");

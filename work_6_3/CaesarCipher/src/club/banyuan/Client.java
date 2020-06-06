@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
@@ -72,9 +71,8 @@ public class Client {
         fos.flush();
         bis.close();
         fos.close();
-        System.out.println(select.equals("1")?"文件加密完成！":"文件解密完成！");
+        System.out.println("1".equals(select)?"文件加密完成！":"文件解密完成！");
         break;
-
       } catch (IOException e) {
         e.printStackTrace();
         break;
