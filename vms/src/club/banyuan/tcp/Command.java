@@ -5,12 +5,6 @@ package club.banyuan.tcp;
  */
 
 public enum Command {
-  UPDATE("0"), PURCHASE("1"), PASSWORD("2"), REFILL("3"), CHANGE("4");
-
-  String command;
-
-  Command(String s) {
-    command = s;
-  }
+  UPDATE(), PURCHASE(), PASSWORD(), REFILL(), CHANGE();
 
 }

@@ -10,7 +10,7 @@ public class Client {
 
   public static void main(String[] args) {
     try(Socket socket = new Socket("127.0.0.1", 10000)) {
-      System.out.println("连接成功");
+      System.out.println("--------服务端连接成功!--------");
       VendingMachineClient vendingMachineClient = new VendingMachineClient();
       vendingMachineClient.start(socket);
     }catch (IOException | ClassNotFoundException e){

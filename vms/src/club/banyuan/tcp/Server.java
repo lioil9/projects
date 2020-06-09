@@ -14,9 +14,10 @@ import java.util.concurrent.Executors;
 public class Server {
 
   private final Shelf[] shelves = new Shelf[SHELVES_NUM];
-  public static final int SHELVES_NUM = 5;
+  private static final int SHELVES_NUM = 5;
   private static final String password = "1110";
-  public static final int FULL_INVENTORY = 10;
+  private static final int FULL_INVENTORY = 10;
+  private static final String QUIT = "quit";
 
   public Shelf[] getShelves() {
     return shelves;
@@ -54,7 +55,7 @@ public class Server {
       executorService.submit(() -> {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
-        if ("quit".equals(input)) {
+        if (QUIT.equalsIgnoreCase(input)) {
           try {
             serverSocket.close();
           } catch (IOException e) {
@@ -63,6 +64,7 @@ public class Server {
         }
       });
       while (!serverSocket.isClosed()) {
+        System.out.println("等待接入客户端。。。(输入quit可关闭服务端)");
         Socket socket = serverSocket.accept();
         String host = socket.getInetAddress().getHostAddress();
         System.out.printf("客户端[%s:%s]接入\n", host, socket.getPort());
@@ -71,7 +73,7 @@ public class Server {
       }
     } catch (IOException e) {
       System.out.println("服务端结束运行！");
-      e.printStackTrace();
+//      e.printStackTrace();
     }
     executorService.shutdownNow();
   }
