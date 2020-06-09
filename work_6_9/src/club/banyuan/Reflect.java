@@ -15,6 +15,7 @@ public class Reflect {
   }
 
   public static void printInfo(Object object) {
+
     Class objectClass = object.getClass();
     Field[] fields = objectClass.getDeclaredFields();
     Method[] methods = objectClass.getDeclaredMethods();

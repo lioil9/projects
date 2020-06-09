@@ -67,7 +67,7 @@ public class Server {
         System.out.println("等待接入客户端。。。(输入quit可关闭服务端)");
         Socket socket = serverSocket.accept();
         String host = socket.getInetAddress().getHostAddress();
-        System.out.printf("客户端[%s:%s]接入\n", host, socket.getPort());
+        System.out.printf("客户端[%s:%s]接入。。。\n", host, socket.getPort());
         ServerThread serverThread = new ServerThread(socket, server);
         executorService.submit(serverThread);
       }

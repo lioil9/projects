@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Objects;
 
 /**
  * 接收指令对服务端的Shelf进行操作，并发送给客户端相应的信息的线程
@@ -31,7 +30,7 @@ public class ServerThread implements Runnable {
       while (!Thread.currentThread().isInterrupted()) {
         ObjectInputStream ois = new ObjectInputStream(bis);
         Command command = (Command) ois.readObject();
-        switch (Objects.requireNonNull(command)){
+        switch (command){
           case UPDATE:
             ObjectOutputStream oos = new ObjectOutputStream(bos);
             oos.writeObject(server.getShelves());
