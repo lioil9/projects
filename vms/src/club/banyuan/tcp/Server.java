@@ -1,15 +1,16 @@
 package club.banyuan.tcp;
 
 import club.banyuan.machine.Shelf;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+/**
+ * 服务端，可保存Shelf货架，并用线程池接收多个客户端
+ */
 public class Server {
 
   private final Shelf[] shelves = new Shelf[SHELVES_NUM];
@@ -19,6 +20,10 @@ public class Server {
 
   public Shelf[] getShelves() {
     return shelves;
+  }
+
+  public String getPassword() {
+    return password;
   }
 
   private void initShelves() {
@@ -37,55 +42,41 @@ public class Server {
     shelves[4] = new Shelf("E", "Coffee", 7, 9);
   }
 
-
+  /**
+   * 可提交接收而来的多个客户端线程，并且服务端输入quit指令时服务端结束运行；
+   * @param args
+   */
   public static void main(String[] args) {
+    ExecutorService executorService = Executors.newCachedThreadPool();
+    Server server = new Server();
+    server.initShelves();
     try (ServerSocket serverSocket = new ServerSocket(10000)) {
-      Socket socket = serverSocket.accept();
-      System.out.println("已有客户端接入");
-      Server server = new Server();
-      server.initShelves();
-      BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
-      BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
-      while (true) {
-        byte[] bytes = new byte[1];
-        bis.read(bytes);
-        if (Arrays.equals("0".getBytes(), bytes)) {
-          ObjectOutputStream oos = new ObjectOutputStream(bos);
-          oos.writeObject(server.getShelves());
-          oos.flush();
-          bos.flush();
+      executorService.submit(() -> {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        if ("quit".equals(input)) {
+          try {
+            serverSocket.close();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
-        if (Arrays.equals("1".getBytes(), bytes)) {
-          ObjectInputStream ois = new ObjectInputStream(bis);
-          ObjectOutputStream oos = new ObjectOutputStream(bos);
-          Shelf purchase = (Shelf) ois.readObject();
-          Boolean flag = server.purchaseProduct(purchase);
-          oos.writeObject(flag);
-          oos.flush();
-          bos.flush();
-        }
-        if (Arrays.equals("2".getBytes(), bytes)) {
-          bos.write(Server.password.getBytes());
-          bos.flush();
-        }
-        if (Arrays.equals("3".getBytes(), bytes)) {
-          ObjectInputStream ois = new ObjectInputStream(bis);
-          Shelf purchase = (Shelf) ois.readObject();
-          server.refillProduct(purchase);
-        }
-        if (Arrays.equals("4".getBytes(), bytes)) {
-          ObjectInputStream ois = new ObjectInputStream(bis);
-          Shelf purchase = (Shelf) ois.readObject();
-          server.changeProduct(purchase);
-        }
+      });
+      while (!serverSocket.isClosed()) {
+        Socket socket = serverSocket.accept();
+        String host = socket.getInetAddress().getHostAddress();
+        System.out.printf("客户端[%s:%s]接入\n", host, socket.getPort());
+        ServerThread serverThread = new ServerThread(socket, server);
+        executorService.submit(serverThread);
       }
-
-    } catch (IOException | ClassNotFoundException e) {
+    } catch (IOException e) {
+      System.out.println("服务端结束运行！");
       e.printStackTrace();
     }
+    executorService.shutdownNow();
   }
 
-  private void changeProduct(Shelf purchase) {
+  public void changeProduct(Shelf purchase) {
     for (int i = 0; i < shelves.length; i++) {
       if (shelves[i].getCode().equals(purchase.getCode())) {
         shelves[i] = purchase;
@@ -93,8 +84,7 @@ public class Server {
     }
   }
 
-
-  private Boolean purchaseProduct(Shelf purchase) {
+  public Boolean purchaseProduct(Shelf purchase) {
     for (Shelf shelf : shelves) {
       if (shelf.getCode().equals(purchase.getCode()) && shelf.getInventory() > 0) {
         shelf.setInventory(purchase.getInventory() - 1);
@@ -102,16 +92,14 @@ public class Server {
       }
     }
     return false;
-
   }
 
-  private void refillProduct(Shelf purchase) {
+  public void refillProduct(Shelf purchase) {
     for (Shelf shelf : shelves) {
       if (shelf.getCode().equals(purchase.getCode())) {
         shelf.setInventory(FULL_INVENTORY);
       }
     }
-
   }
 
 }

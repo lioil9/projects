@@ -21,7 +21,6 @@ import club.banyuan.menu.MenuFlow;
 import club.banyuan.menu.MenuNode;
 import club.banyuan.menu.MenuType;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -42,8 +41,6 @@ public class VendingMachineClient implements MenuFlow<FlowStatus> {
 
 
   private Menu<FlowStatus> menu;
-//  private static final int password = 1110;
-
   private int userAmount;
   private int salesAmount;
   private String purchasedProduct = NO_PURCHASE;
@@ -62,11 +59,17 @@ public class VendingMachineClient implements MenuFlow<FlowStatus> {
     this.shelves = shelves;
   }
 
+  /**
+   * 更新接收服务端的货架，每次客户端对商品进行改动时都会接收新的Shelf数组并更新
+   * @param socket
+   * @throws IOException
+   * @throws ClassNotFoundException
+   */
   public void updateShelves(Socket socket) throws IOException, ClassNotFoundException {
-    BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
     BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
-    bos.write("0".getBytes());
-    bos.flush();
+    oos.writeObject(Command.UPDATE);
+    oos.flush();
     ObjectInputStream ois = new ObjectInputStream(bis);
     setShelves((Shelf[]) ois.readObject());
   }
@@ -181,7 +184,6 @@ public class VendingMachineClient implements MenuFlow<FlowStatus> {
   }
 
   public void start(Socket socket) throws IOException, ClassNotFoundException {
-//    updateShelves(socket);
     displayShelves(socket);
     String userInput;
     MenuNode<FlowStatus> menuNode;
@@ -307,11 +309,9 @@ public class VendingMachineClient implements MenuFlow<FlowStatus> {
       shelf.setPrice(price);
       shelf.setInventory(FULL_INVENTORY);
 
-      BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
-      BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
-      bos.write("4".getBytes());
-      bos.flush();
-      ObjectOutputStream oos = new ObjectOutputStream(bos);
+      ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+      oos.writeObject(Command.CHANGE);
+      oos.flush();
       oos.writeObject(shelf);
       oos.flush();
       updateShelves(socket);
@@ -325,11 +325,9 @@ public class VendingMachineClient implements MenuFlow<FlowStatus> {
     int index = Integer.parseInt(userInput);
     if (index - 1 >= 0) {
       Shelf refileShelf = shelves[index - 1];
-      BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
-      BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
-      bos.write("3".getBytes());
-      bos.flush();
-      ObjectOutputStream oos = new ObjectOutputStream(bos);
+      ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+      oos.writeObject(Command.REFILL);
+      oos.flush();
       oos.writeObject(refileShelf);
       oos.flush();
       System.out.printf("You have refilled product %s to full.\n", refileShelf.getCode());
@@ -390,11 +388,11 @@ public class VendingMachineClient implements MenuFlow<FlowStatus> {
     String userInput = scanner.next();
 
     try {
-      BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+      ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
       BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
-      bos.write("2".getBytes());
-      bos.flush();
-      byte[] bytes = new byte[128];
+      oos.writeObject(Command.PASSWORD);
+      oos.flush();
+      byte[] bytes = new byte[32];
       int count = bis.read(bytes);
       String password = new String(bytes, 0, count);
       if (password.equals(userInput)) {
@@ -435,11 +433,10 @@ public class VendingMachineClient implements MenuFlow<FlowStatus> {
 
   private boolean purchaseProduct(Shelf purchase, Socket socket)
       throws IOException, ClassNotFoundException {
-    BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
     BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
-    bos.write("1".getBytes());
-    bos.flush();
-    ObjectOutputStream oos = new ObjectOutputStream(bos);
+    oos.writeObject(Command.PURCHASE);
+    oos.flush();
     oos.writeObject(purchase);
     oos.flush();
     ObjectInputStream ois = new ObjectInputStream(bis);

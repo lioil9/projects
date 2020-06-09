@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Shelf implements Serializable {
 
-  private String code;
+  private final String code;
   private String name;
   private int price;
   private int inventory;
@@ -40,9 +40,6 @@ public class Shelf implements Serializable {
     return code;
   }
 
-  public void setCode(String code) {
-    this.code = code;
-  }
 
   public String getName() {
     return name;
